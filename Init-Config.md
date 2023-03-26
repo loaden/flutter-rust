@@ -2,15 +2,7 @@
 
 记忆力逐渐丧失，只有笔记才能避免原地踏步。
 
-## 一、平台相关额外说明
-
-* macOS 需要 .zprofile 导出环境变量，否则 brew 更新困难
-  > export HOMEBREW_NO_INSTALL_FROM_API=1
-
-* macOS 需要安装 clang
-  > xcode-select --install
-
-## 二、Flutter + Rust 安装配置
+## 一、Flutter + Rust 安装配置
 
 ### 1. 安装配置 Rust
 
@@ -27,6 +19,30 @@
 * 升级版本：`$ flutter upgrade`
 * 检查配置：`$ flutter doctor`
 * 检查位置：`$ where flutter dart`
+* 安卓开发：<https://developer.android.google.cn/studio>
+
+## 二、平台相关工作
+
+### 1. 国内网络镜像
+
+* 国内镜像地址，Fuck GFW：<https://flutter.cn/community/china>
+
+  ```shell
+  export PUB_HOSTED_URL=https://pub.flutter-io.cn
+  export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
+  ```
+* Windows平台开始菜单搜索“环境变量”，添加上述环境变量。
+
+### 2. macOS 平台
+
+* 需要 .zprofile 导出环境变量，否则 brew 更新困难
+  > export HOMEBREW_NO_INSTALL_FROM_API=1
+* macOS 与原生 iOS 代码交互
+  > sudo gem install cocoapods
+* macOS 需要通过AppStore安装 Xcode
+* macOS 需要安装 clang
+  > xcode-select --install
+
 
 ## 三、flutter_rust_bridge 学习笔记
 

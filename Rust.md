@@ -7,7 +7,7 @@
 ### 1. 创建项目
 
 * 应用程序
-  > cargo new gui-app
+  > cargo new rust-app
 * 动态库
   > cargo new --lib rust-lib
 
