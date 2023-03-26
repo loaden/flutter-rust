@@ -7,12 +7,6 @@
 * macOS 需要 .zprofile 导出环境变量，否则 brew 更新困难
   > export HOMEBREW_NO_INSTALL_FROM_API=1
 
-* macOS 安装 Dart
-
-  > ```shell
-  > brew tap dart-lang/dart
-  > brew install dart
-
 * macOS 需要安装 clang
   > xcode-select --install
 
@@ -22,6 +16,7 @@
 
 * 地址：<https://www.rust-lang.org/zh-CN/tools/install>
 * 升级：`$ rustup update`
+* 查看：`$ rustup show`
 
 ### 2. 安装配置 Flutter
 
@@ -31,6 +26,7 @@
 * 查询版本：`$ flutter --version`
 * 升级版本：`$ flutter upgrade`
 * 检查配置：`$ flutter doctor`
+* 检查位置：`$ where flutter dart`
 
 ## 三、flutter_rust_bridge 学习笔记
 
