@@ -31,6 +31,7 @@
   export PUB_HOSTED_URL=https://pub.flutter-io.cn
   export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
   ```
+
 * Windows平台开始菜单搜索“环境变量”，添加上述环境变量。
 
 ### 2. macOS 平台
@@ -43,6 +44,14 @@
 * macOS 需要安装 clang
   > xcode-select --install
 
+### 3. Android 平台
+
+* 创建虚拟机图形加速选择：`Hardware - GLES 2.0`
+* 安卓虚拟机 “关于” 页面连续点击 “Build number” 开启 “开发者模式”
+
+### 4. Windows 平台
+
+* Android SDK Tools 安装 Google USB Driver
 
 ## 三、flutter_rust_bridge 学习笔记
 

@@ -8,7 +8,6 @@
 
 * 创建应用程序
   > flutter create flutter_app
-
 * 启动 iOS 模拟器
   > open -a Simulator
 * 运行应用程序
