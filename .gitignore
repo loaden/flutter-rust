@@ -22,3 +22,7 @@ doc/api/
 
 # 其他
 .DS_Store
+
+
+# Rust
+rust/*/target
