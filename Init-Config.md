@@ -33,6 +33,12 @@
   ```
 
 * Windows平台开始菜单搜索“环境变量”，添加上述环境变量。
+* git 禁止设置代理，否则 `flutter upgrade` 失败
+
+  ```shell
+  git config --global --add remote.origin.proxy ""
+  git config --global --get remote.origin.proxy
+  ```
 
 ### 2. macOS 平台
 
