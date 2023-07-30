@@ -5,6 +5,7 @@
         "./rust/e02-array/Cargo.toml",
         "./rust/e03-move/Cargo.toml",
         "./rust/e04-borrowing/Cargo.toml",
-        "./rust/e05-slice/Cargo.toml"
+        "./rust/e05-slice/Cargo.toml",
+        "./rust/e06-struct/Cargo.toml"
     ]
 }
