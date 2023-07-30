@@ -1,6 +1,7 @@
 {
     "rust-analyzer.linkedProjects": [
+        "./Cargo.toml",
         "./rust/e01-slice/Cargo.toml",
-        "./Cargo.toml"
+        "./rust/e01-tuple/Cargo.toml"
     ]
 }
