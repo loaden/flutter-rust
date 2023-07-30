@@ -18,6 +18,9 @@ fn main() {
     struct Point(i32, i32, f64);
     let p = Point(12, 12, 15.8);
     println!("{:?}", p);
+
+    let cr = User::create(String::from("username"));
+    println!("{:#?}", cr);
 }
 
 #[derive(Debug)]
@@ -30,5 +33,13 @@ struct User {
 impl User {
     fn print(&self) {
         println!("User: {}, {}, {}", self.username, self.email, self.age + 1);
+    }
+
+    fn create(username: String) -> User {
+        User {
+            username,
+            email: String::from(""),
+            age: 1,
+        }
     }
 }
