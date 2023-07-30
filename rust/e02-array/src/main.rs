@@ -5,4 +5,7 @@ fn main() {
     a2.sort();
     println!("{}", a1.len());
     println!("{}, {}", a2[0], a2.last().unwrap());
+    for e in a2 {
+        println!("for {}", e);
+    }
 }
