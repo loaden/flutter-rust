@@ -3,5 +3,5 @@
 version = 3
 
 [[package]]
-name = "e01-slice"
+name = "e05-slice"
 version = "0.1.0"
