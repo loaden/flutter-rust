@@ -18,6 +18,14 @@ fn main() {
     for j in a {
         println!("main: {}", j);
     }
+
+    let str = "Hello World!";
+    println!("main: {}", str_slice(&&&&&&&&&&&&&&&&&&str));
+}
+
+fn str_slice(s: &str) -> &str {
+    println!("str_slice: {}", &s[1..]);
+    &s[..2]
 }
 
 fn string_slice_mut(s: &mut String) -> &str {
