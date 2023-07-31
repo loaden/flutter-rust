@@ -12,7 +12,11 @@ fn main() {
         }
     };
 
-    if let None = p {
-        println!("if let");
+    if let None = o {
+        println!("if let None");
+    } else if let Some(x) = o {
+        println!("if let {}", x);
+    } else {
+        println!("else");
     }
 }
