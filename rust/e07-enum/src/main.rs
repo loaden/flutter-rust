@@ -22,6 +22,10 @@ fn main() {
     if let Message::Point { x: 32, y: 66 } = p {
         println!("Message::Point {:?}", p);
     }
+
+    if let Message::Point { x, y } = p {
+        println!("Message::Point {} - {}", x, y);
+    }
 }
 
 #[derive(Debug)]
