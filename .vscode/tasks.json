@@ -5,7 +5,7 @@
 			"type": "cargo",
 			"command": "run",
 			"options": {
-				"cwd": "${fileDirname}"
+				"cwd": "${fileDirname}",
 			},
 			"problemMatcher": [
 				"$rustc"
