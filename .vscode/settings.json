@@ -7,6 +7,7 @@
         "./rust/e04-borrowing/Cargo.toml",
         "./rust/e05-slice/Cargo.toml",
         "./rust/e06-struct/Cargo.toml",
-        "./rust/e07-enum/Cargo.toml"
+        "./rust/e07-enum/Cargo.toml",
+        "./rust/e08-option/Cargo.toml"
     ]
 }
