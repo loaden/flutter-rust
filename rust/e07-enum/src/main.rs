@@ -13,10 +13,8 @@ fn main() {
     c.print();
 
     match p {
-        Message::Point { x, y } => {
-            println!("Message::Point {}, {}", x, y);
-        },
-        _ => ()
+        Message::Point { x, y } => println!("Message::Point {}, {}", x, y),
+        _ => (),
     }
 
     if let Message::Point { x: 32, y: 66 } = p {
@@ -31,9 +29,9 @@ fn main() {
 #[derive(Debug)]
 enum Message {
     Quit,
-    Point {x: i32, y: i32},
+    Point { x: i32, y: i32 },
     Title(String),
-    Color(i32, i32, i32)
+    Color(i32, i32, i32),
 }
 
 fn print_enum(m: &Message) -> &Message {

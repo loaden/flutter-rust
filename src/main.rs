@@ -2,9 +2,7 @@ fn main() {
     let p = Message::Point { x: 32, y: 66 };
     p.print();
     match p {
-        Message::Point { x, y } => {
-            println!("{}, {}", x, y);
-        },
+        Message::Point { x, y } => println!("{}, {}", x, y),
         _ => (),
     }
 }

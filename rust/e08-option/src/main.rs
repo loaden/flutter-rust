@@ -4,12 +4,8 @@ fn main() {
     println!("{:?}, {:?}", o, p);
 
     match o {
-        Option::None => {
-            println!("None");
-        },
-        Option::Some(x) => {
-            println!("{}", x);
-        }
+        Option::None => println!("None"),
+        Option::Some(x) => println!("{}", x),
     };
 
     if let None = o {
