@@ -20,5 +20,8 @@ fn main() {
 
     for i in &mut m {
         println!("{}, {}", i.0, i.1);
+        match i {
+            (x, y) => println!("match: {}, {}", x, y),
+        }
     }
 }
