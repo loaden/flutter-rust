@@ -10,6 +10,7 @@
         "./rust/e07-enum/Cargo.toml",
         "./rust/e08-option/Cargo.toml",
         "./rust/e09-module/Cargo.toml",
-        "./rust/e10-vector/Cargo.toml"
+        "./rust/e10-vector/Cargo.toml",
+        "./rust/e11-string/Cargo.toml"
     ]
 }
