@@ -11,6 +11,9 @@ fn main() {
     notify(&p);
     notify2(&p);
     notify3(&p);
+
+    let d = return_traited();
+    println!("{}", d.fly());
 }
 
 pub trait Gongfu {
@@ -59,4 +62,12 @@ where
     T: Gongfu,
 {
     println!("Notify3: {}", item.fly());
+}
+
+struct Duck {}
+
+impl Gongfu for Duck {}
+
+fn return_traited() -> impl Gongfu {
+    Duck {}
 }
