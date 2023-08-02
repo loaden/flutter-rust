@@ -9,6 +9,8 @@ fn main() {
     let p = Plane {};
     println!("{}", p.fly());
     notify(&p);
+    notify2(&p);
+    notify3(&p);
 }
 
 pub trait Gongfu {
@@ -46,4 +48,15 @@ impl<T> Bird<T> {
 
 fn notify(item: &impl Gongfu) {
     println!("Notify: {}", item.fly());
+}
+
+fn notify2<T: Gongfu>(item: &T) {
+    println!("Notify2: {}", item.fly());
+}
+
+fn notify3<T>(item: &T)
+where
+    T: Gongfu,
+{
+    println!("Notify3: {}", item.fly());
 }
