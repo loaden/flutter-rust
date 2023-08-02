@@ -12,6 +12,7 @@
         "./rust/e09-module/Cargo.toml",
         "./rust/e10-vector/Cargo.toml",
         "./rust/e11-string/Cargo.toml",
-        "./rust/e12-hashmap/Cargo.toml"
+        "./rust/e12-hashmap/Cargo.toml",
+        "./rust/e13-result/Cargo.toml"
     ]
 }
