@@ -1,6 +1,7 @@
 use std::{fs::File, io::ErrorKind};
 use std::io;
 use std::io::Read;
+use std::fs;
 
 fn main() {
     let filename = "test.txt";
@@ -28,6 +29,13 @@ fn main() {
         Ok(_f) => (),
         Err(e) => println!("Err: {}", e),
     }
+
+    match fs::read_to_string(filename) {
+        Ok(s) => println!("read: {}", s),
+        Err(e) => println!("read error: {}", e),
+    }
+
+    let _ = fs::remove_file(filename);
 }
 
 fn read_file() -> Result<String, io::Error> {
