@@ -23,6 +23,11 @@ fn main() {
         Ok(s) => println!("{}", s),
         Err(e) => println!("Err: {}", e),
     }
+
+    match test_report() {
+        Ok(_f) => (),
+        Err(e) => println!("Err: {}", e),
+    }
 }
 
 fn read_file() -> Result<String, io::Error> {
@@ -30,4 +35,9 @@ fn read_file() -> Result<String, io::Error> {
     let mut s = String::new();
     f.read_to_string(&mut s)?;
     Ok(s)
+}
+
+fn test_report() -> Result<File, io::Error> {
+    let f = File::open("report.txt")?;
+    Ok(f)
 }
