@@ -1,5 +1,4 @@
 use std::collections::HashMap;
-
 fn main() {
     let mut m = HashMap::new();
     m.insert("Blue", 10);
@@ -30,4 +29,6 @@ fn main() {
     for (k, v) in &mut m {
         println!("for..in: {} - {}", k, v);
     }
+
+
 }
