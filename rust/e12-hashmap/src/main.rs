@@ -26,4 +26,8 @@ fn main() {
             (x, y) => println!("match: {}, {}", x, y),
         }
     }
+
+    for (k, v) in &mut m {
+        println!("for..in: {} - {}", k, v);
+    }
 }
