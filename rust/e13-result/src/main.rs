@@ -1,4 +1,6 @@
 use std::{fs::File, io::ErrorKind};
+use std::io;
+use std::io::Read;
 
 fn main() {
     let filename = "test.txt";
@@ -16,4 +18,16 @@ fn main() {
 
     let _f = File::open(filename).unwrap();
     let _f = File::open(filename).expect("msg");
+
+    match read_file() {
+        Ok(s) => println!("{}", s),
+        Err(e) => println!("Err: {}", e),
+    }
+}
+
+fn read_file() -> Result<String, io::Error> {
+    let mut f = File::open("non-exist")?;
+    let mut s = String::new();
+    f.read_to_string(&mut s)?;
+    Ok(s)
 }
