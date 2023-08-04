@@ -23,6 +23,13 @@ mod tests {
         let smller = Rectangle { length: 5, width: 6 };
         assert!(larger.can_hold(&smller));
     }
+
+    #[test]
+    #[should_panic]
+    fn test_rectangle_panic() {
+        let r = Rectangle { length: 0, width: 8 };
+        r.test_should_panic();
+    }
 }
 
 pub fn add(left: usize, right: usize) -> usize {
