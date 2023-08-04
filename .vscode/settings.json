@@ -16,6 +16,7 @@
         "./rust/e13-result/Cargo.toml",
         "./rust/e14-generic/Cargo.toml",
         "./rust/e15-trait/Cargo.toml",
-        "./rust/e16-lifetime/Cargo.toml"
+        "./rust/e16-lifetime/Cargo.toml",
+        "./rust/e17-test/Cargo.toml",
     ]
 }
