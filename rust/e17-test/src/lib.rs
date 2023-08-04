@@ -1,10 +1,5 @@
-pub fn add(left: usize, right: usize) -> usize {
-    left + right
-}
-
-pub fn devision(value: usize) -> usize {
-    value / 2
-}
+mod rect;
+use rect::Rectangle;
 
 #[cfg(test)]
 mod tests {
@@ -21,4 +16,19 @@ mod tests {
         let result = devision(5);
         assert_eq!(result, 3);
     }
+
+    #[test]
+    fn test_rectangle_hold() {
+        let larger = Rectangle { length: 8, width: 7 };
+        let smller = Rectangle { length: 5, width: 6 };
+        assert!(larger.can_hold(&smller));
+    }
+}
+
+pub fn add(left: usize, right: usize) -> usize {
+    left + right
+}
+
+pub fn devision(value: usize) -> usize {
+    value / 2
 }
