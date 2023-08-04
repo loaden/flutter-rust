@@ -1,7 +1,7 @@
-use e17test;
+use tester;
 
 #[test]
 fn integration_test_1() {
-    let r = e17test::add(1, 5);
+    let r = tester::add(1, 5);
     assert_eq!(6, r);
 }
