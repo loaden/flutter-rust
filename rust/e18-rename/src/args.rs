@@ -15,9 +15,9 @@ pub fn process_cmdline() -> Result<CliArgs, String> {
     } else {
         println!("{:?}", args);
         let r = CliArgs {
-            path: PathBuf::from(args[1].as_str()),
-            old_str: String::from(args[2].as_str()),
-            new_str: String::from(args[3].as_str()),
+            path: PathBuf::from(args[1].clone()),
+            old_str: args[2].clone(),
+            new_str: args[3].clone(),
         };
         Ok(r)
     }
