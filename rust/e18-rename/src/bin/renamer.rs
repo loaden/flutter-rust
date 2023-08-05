@@ -6,7 +6,7 @@ fn main() {
 
     let r = app::args::process_cmdline();
     match r {
-        Ok(_args) => (),
+        Ok(args) => println!("args: {:?}", args),
         Err(err) => println!("args: {}", err),
     }
 }
