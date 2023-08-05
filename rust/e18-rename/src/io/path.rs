@@ -1,8 +1,8 @@
 pub mod path {
-    use crate::io::types::types::TargetFile;
+    use crate::io::types;
 
     pub fn get_files(path: &String) {
-        let t = TargetFile {
+        let t = types::TargetFile {
             old_name: String::from("old"),
             new_name: String::from("new"),
             renamed: false,
