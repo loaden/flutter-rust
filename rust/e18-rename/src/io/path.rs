@@ -2,8 +2,8 @@ pub mod path {
     use crate::types;
     use crate::args;
 
-    pub fn get_files(path: &String) {
-        let t = types::TargetFile {
+    pub fn get_files(_path: &String) {
+        let _t = types::TargetFile {
             old_name: String::from("old"),
             new_name: String::from("new"),
             renamed: false,
@@ -17,21 +17,26 @@ pub mod path {
         tf
     }
 
-    #[test]
-    fn test_rename_inside() {
-        let cfg = args::Config::new(
-            String::from("."),
-            String::from("old"),
-            String::from("new"),
-        );
-        let mut tf = types::TargetFile {
-            new_name: String::new(),
-            old_name: String::from("some_old_files.txt"),
-            renamed: false,
-        };
+    mod tests {
+        #[allow(unused_imports)]
+        use super::*;
 
-        let r = rename(&cfg, &mut tf);
-        assert!(r.old_name.contains(&cfg.old_str));
-        assert!(r.renamed);
+        #[test]
+        fn test_rename_inside() {
+            let cfg = args::Config::new(
+                String::from("."),
+                String::from("old"),
+                String::from("new"),
+            );
+            let mut tf = types::TargetFile {
+                new_name: String::new(),
+                old_name: String::from("some_old_files.txt"),
+                renamed: false,
+            };
+
+            let r = rename(&cfg, &mut tf);
+            assert!(r.old_name.contains(&cfg.old_str));
+            assert!(r.renamed);
+        }
     }
 }

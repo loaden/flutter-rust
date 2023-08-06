@@ -6,7 +6,7 @@ use io::path::path;
 
 pub fn test_mod() {
     path::get_files(&"path".to_string());
-    let tf = types::TargetFile {
+    let _tf = types::TargetFile {
         new_name: String::new(),
         old_name: String::new(),
         renamed: false,

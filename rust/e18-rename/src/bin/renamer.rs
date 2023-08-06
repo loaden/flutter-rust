@@ -10,7 +10,7 @@ fn main() {
         Err(err) => println!("args: {}", err),
     }
 
-    let r = app::args::process_cmdline().unwrap_or_else(|err| {
+    let _r = app::args::process_cmdline().unwrap_or_else(|err| {
         println!("{}", err);
         exit();
     });
