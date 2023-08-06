@@ -1,2 +1,2 @@
-mod path;
-mod types;
+pub mod path;
+pub mod types;

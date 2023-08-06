@@ -1,17 +1,31 @@
 pub mod io;
 pub mod args;
 
-pub fn add(left: usize, right: usize) -> usize {
-    left + right
+use io::types;
+use io::path::path;
+
+pub fn test_mod() {
+    path::get_files(&"path".to_string());
+    let tf = types::TargetFile {
+        new_name: String::new(),
+        old_name: String::new(),
+        renamed: false,
+    };
 }
 
 #[cfg(test)]
 mod tests {
+    use crate::args::Config;
     use super::*;
 
     #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
+    fn tst_rename() {
+        let cfg = Config::new(
+            String::from("."),
+            String::from("old"),
+            String::from("new"),
+        );
+
+        let tf = io::TargetFile {};
     }
 }
