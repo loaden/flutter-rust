@@ -15,7 +15,7 @@ pub fn test_mod() {
 
 #[cfg(test)]
 mod tests {
-    use crate::args::Config;
+    use args::Config;
     use super::*;
 
     #[test]
@@ -26,6 +26,10 @@ mod tests {
             String::from("new"),
         );
 
-        let tf = io::TargetFile {};
+        let tf = types::TargetFile {
+            new_name: String::new(),
+            old_name: String::new(),
+            renamed: false,
+        };
     }
 }
