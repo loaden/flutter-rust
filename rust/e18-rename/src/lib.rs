@@ -19,17 +19,19 @@ mod tests {
     use super::*;
 
     #[test]
-    fn tst_rename() {
+    fn test_rename() {
         let cfg = Config::new(
             String::from("."),
             String::from("old"),
             String::from("new"),
         );
 
-        let tf = types::TargetFile {
+        let mut tf = types::TargetFile {
             new_name: String::new(),
-            old_name: String::new(),
+            old_name: String::from("some_old_files.txt"),
             renamed: false,
         };
+        let r = path::rename(&cfg, &mut tf);
+        assert!(r.new_name.contains(&cfg.new_str));
     }
 }

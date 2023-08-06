@@ -1,5 +1,6 @@
 pub mod path {
-    use crate::io::types;
+    use crate::types;
+    use crate::args;
 
     pub fn get_files(path: &String) {
         let t = types::TargetFile {
@@ -9,7 +10,10 @@ pub mod path {
         };
     }
 
-    pub fn rename(old: &String, new: &String) {
-        println!("{} - {}", old, new);
+    pub fn rename<'a>(cfg: &args::Config, tf: &'a mut types::TargetFile) -> &'a types::TargetFile {
+        println!("{:?}", cfg);
+        tf.new_name = tf.old_name.replace(&cfg.old_str, &cfg.new_str);
+        tf.renamed = true;
+        tf
     }
 }

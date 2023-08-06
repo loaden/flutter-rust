@@ -3,9 +3,9 @@ use std::path::PathBuf;
 
 #[derive(Debug)]
 pub struct Config {
-    path: PathBuf,
-    old_str: String,
-    new_str: String,
+    pub path: PathBuf,
+    pub old_str: String,
+    pub new_str: String,
 }
 
 impl Config {
