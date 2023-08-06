@@ -18,10 +18,10 @@ impl CliArgs {
     }
 }
 
-pub fn process_cmdline() -> Result<CliArgs, String> {
+pub fn process_cmdline() -> Result<CliArgs, &'static str> {
     let args: Vec<String> = env::args().collect();
     if args.len() != 4 {
-        Err(String::from("process_cmdline"))
+        Err("process_cmdline")
     } else {
         println!("{:?}", args);
         let r = CliArgs::new(

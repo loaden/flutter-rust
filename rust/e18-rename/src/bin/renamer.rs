@@ -9,4 +9,9 @@ fn main() {
         Ok(args) => println!("args: {:?}", args),
         Err(err) => println!("args: {}", err),
     }
+
+    // 需要返回CliArgs
+    // let r = app::args::process_cmdline().unwrap_or_else(|err| {
+    //     println!("{}", err);
+    // });
 }
