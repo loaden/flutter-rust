@@ -1,4 +1,5 @@
 use renamer as app;
+use std::process;
 
 fn main() {
     app::test_mod();
@@ -9,7 +10,12 @@ fn main() {
         Err(err) => println!("args: {}", err),
     }
 
-    // let r = app::args::process_cmdline().unwrap_or_else(|err| {
-    //     println!("{}", err);
-    // });
+    let r = app::args::process_cmdline().unwrap_or_else(|err| {
+        println!("{}", err);
+        exit();
+    });
+}
+
+fn exit() -> ! {
+    process::exit(2)
 }
