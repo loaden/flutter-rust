@@ -16,4 +16,22 @@ pub mod path {
         tf.renamed = true;
         tf
     }
+
+    #[test]
+    fn test_rename_inside() {
+        let cfg = args::Config::new(
+            String::from("."),
+            String::from("old"),
+            String::from("new"),
+        );
+        let mut tf = types::TargetFile {
+            new_name: String::new(),
+            old_name: String::from("some_old_files.txt"),
+            renamed: false,
+        };
+
+        let r = rename(&cfg, &mut tf);
+        assert!(r.old_name.contains(&cfg.old_str));
+        assert!(r.renamed);
+    }
 }
