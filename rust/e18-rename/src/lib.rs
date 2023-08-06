@@ -1,8 +1,8 @@
 pub mod io;
 pub mod args;
 
-use io::types;
-use io::path::path;
+use crate::io::types;
+use crate::io::path::path;
 
 pub fn test_mod() {
     path::get_files(&"path".to_string());
@@ -15,12 +15,11 @@ pub fn test_mod() {
 
 #[cfg(test)]
 mod tests {
-    use args::Config;
     use super::*;
 
     #[test]
     fn test_rename() {
-        let cfg = Config::new(
+        let cfg = args::Config::new(
             String::from("."),
             String::from("old"),
             String::from("new"),

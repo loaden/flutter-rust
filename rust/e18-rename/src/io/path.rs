@@ -1,5 +1,5 @@
 pub mod path {
-    use crate::types;
+    use crate::io::types;
     use crate::args;
 
     pub fn get_files(_path: &String) {
