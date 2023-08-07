@@ -12,10 +12,44 @@ fn main() {
         String::from(i)
     };
     closure_simulated_calc("haha");
+
+    let mut r = Cacher::new(|i| {
+        println!("Slowly3...");
+        thread::sleep(Duration::from_secs(2));
+        i
+    });
+    r.value(8);
+    r.value(9);
 }
 
 fn simulated_calc(intensity: u32) -> u32 {
     println!("Slowly...");
     thread::sleep(Duration::from_secs(2));
     intensity
+}
+
+struct Cacher<T>
+    where T: Fn(u32) -> u32
+{
+    r: Option<u32>,
+    closure_inside_struct: T,
+}
+
+impl<T> Cacher<T>
+    where T: Fn(u32) -> u32
+{
+    fn new(closure: T) -> Cacher<T> {
+        Cacher { r: None, closure_inside_struct: closure }
+    }
+
+    fn value(&mut self, closure_arg: u32) -> u32 {
+        match self.r {
+            Some(v) => v,
+            None => {
+                let v = (self.closure_inside_struct)(closure_arg);
+                self.r = Some(v);
+                v
+            },
+        }
+    }
 }
