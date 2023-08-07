@@ -18,6 +18,7 @@
         "./rust/e15-trait/Cargo.toml",
         "./rust/e16-lifetime/Cargo.toml",
         "./rust/e17-test/Cargo.toml",
-        "./rust/e18-rename/Cargo.toml"
+        "./rust/e18-rename/Cargo.toml",
+        "./rust/e19-closure/Cargo.toml"
     ]
 }
