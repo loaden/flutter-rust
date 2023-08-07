@@ -20,6 +20,16 @@ fn main() {
     });
     r.value(8);
     r.value(9);
+
+    let mut mut_value = String::from("mut string");
+    let f = |mut i: u32| -> String {
+        i += 1;
+        mut_value.push_str(&i.to_string());
+        mut_value
+    };
+    // println!("{}", mut_value);
+    let ret = f(8);
+    println!("{}", ret);
 }
 
 fn simulated_calc(intensity: u32) -> u32 {
