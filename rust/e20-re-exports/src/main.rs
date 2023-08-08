@@ -19,6 +19,6 @@ fn main() {
     quux::baz();
     let r = mix(PrimaryColor::Blue, PrimaryColor::Red);
     println!("{:#?}", r);
-    assert_eq!(SecondaryColor::Green, r);
+    assert_eq!(SecondaryColor::Orange, r);
     data::foo();
 }

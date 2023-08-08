@@ -4,8 +4,8 @@ version = "0.1.1"
 edition = "2021"
 
 [[bin]]
-path = "rust/demo/main.rs"
-name = "rust-demo"
+path = "rust/main.rs"
+name = "rust-hi"
 
 [workspace]
 members = [
