@@ -15,3 +15,16 @@
 
 * 插件安装
   > rust-analyzer
+
+### 3. 下载加速
+
+* .cargo/config.toml
+
+    ```toml
+  [source.crates-io]
+  replace-with = 'ustc'
+
+  [source.ustc]
+  registry = "git://mirrors.ustc.edu.cn/crates.io-index/"
+
+    ```
