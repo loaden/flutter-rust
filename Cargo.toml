@@ -1,8 +1,32 @@
 [package]
 name = "rust-flutter"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[[bin]]
+path = "rust/demo/main.rs"
+name = "rust-demo"
 
-[dependencies]
+[workspace]
+members = [
+    "rust/e01-tuple",
+    "rust/e02-array",
+    "rust/e03-move",
+    "rust/e04-borrowing",
+    "rust/e05-slice",
+    "rust/e06-struct",
+    "rust/e07-enum",
+    "rust/e08-option",
+    "rust/e09-module",
+    "rust/e10-vector",
+    "rust/e11-string",
+    "rust/e12-hashmap",
+    "rust/e13-result",
+    "rust/e14-generic",
+    "rust/e15-trait",
+    "rust/e16-lifetime",
+    "rust/e17-test",
+    "rust/e18-rename",
+    "rust/e19-closure",
+    "rust/e20-re-exports",
+]

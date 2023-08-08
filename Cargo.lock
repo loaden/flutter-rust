@@ -3,5 +3,85 @@
 version = 3
 
 [[package]]
+name = "art"
+version = "0.1.0"
+
+[[package]]
+name = "e01-tuple"
+version = "0.1.0"
+
+[[package]]
+name = "e02-array"
+version = "0.1.0"
+
+[[package]]
+name = "e03-move"
+version = "0.1.0"
+
+[[package]]
+name = "e04-borrowing"
+version = "0.1.0"
+
+[[package]]
+name = "e05-slice"
+version = "0.1.0"
+
+[[package]]
+name = "e06-struct"
+version = "0.1.0"
+
+[[package]]
+name = "e07-enum"
+version = "0.1.0"
+
+[[package]]
+name = "e08-option"
+version = "0.1.0"
+
+[[package]]
+name = "e09-module"
+version = "0.1.0"
+
+[[package]]
+name = "e10-vector"
+version = "0.1.0"
+
+[[package]]
+name = "e11-string"
+version = "0.1.0"
+
+[[package]]
+name = "e12-hashmap"
+version = "0.1.0"
+
+[[package]]
+name = "e13-result"
+version = "0.1.0"
+
+[[package]]
+name = "e14-generic"
+version = "0.1.0"
+
+[[package]]
+name = "e15-trait"
+version = "0.1.0"
+
+[[package]]
+name = "e16-lifetime"
+version = "0.1.0"
+
+[[package]]
+name = "e19-closure"
+version = "0.1.0"
+
+[[package]]
+name = "renamer"
+version = "0.1.0"
+
+[[package]]
 name = "rust-flutter"
+version = "0.1.1"
+
+[[package]]
+name = "tester"
 version = "0.1.0"
