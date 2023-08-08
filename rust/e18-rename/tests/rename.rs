@@ -3,7 +3,7 @@ use app::{
     args::Config,
     io::{
         types::TargetFile,
-        path::path,
+        path,
     }
 };
 
