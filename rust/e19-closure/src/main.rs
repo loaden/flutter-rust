@@ -67,9 +67,9 @@ impl<T> Cacher<T>
         }
     }
 }
-
+#[derive(Debug)]
 struct Counter {
-    count: usize,
+    count: u32,
 }
 
 impl Counter {
@@ -79,7 +79,7 @@ impl Counter {
 }
 
 impl Iterator for Counter {
-    type Item = usize;
+    type Item = u32;
 
     fn next(&mut self) -> Option<Self::Item> { // 首字母大写的 Self
         self.count += 1;
@@ -97,6 +97,31 @@ fn test_iterator_next() {
     assert_eq!(c.next(), Some(1));
     assert_eq!(c.next(), Some(2));
     assert_eq!(c.next(), Some(3));
-    assert_eq!(c.next(), Some(4));
+    assert_eq!(c.next(), None);
     assert_eq!(c.next(), Some(5));
+}
+
+#[test]
+fn test_other_iterator_methods() {
+    let sum: u32 = Counter::new()
+        .zip(Counter::new().skip(1))
+        .map(|(a, b)| a * b)
+        .filter(|x| x % 3 == 0)
+        .sum();
+    assert_eq!(6, sum);
+
+    let r = Counter::new()
+        .zip(Counter::new().skip(1));
+    println!("{:#?}", r);
+
+    let r = Counter::new()
+        .zip(Counter::new().skip(1))
+        .map(|(a, b)| a * b);
+    println!("{:#?}", r);
+
+    let r = Counter::new()
+        .zip(Counter::new().skip(1))
+        .map(|(a, b)| a * b)
+        .filter(|x| x % 3 == 0);
+    println!("{:#?}", r);
 }
