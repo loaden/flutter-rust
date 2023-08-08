@@ -30,6 +30,10 @@ fn main() {
     // println!("{}", mut_value);
     let ret = f(8);
     println!("{}", ret);
+
+    let v = vec![1, 2, 3];
+    let r: Vec<i32> = v.iter().map(|i| i + 1).collect();
+    println!("{:?}, {:?}", v, r);
 }
 
 fn simulated_calc(intensity: u32) -> u32 {
