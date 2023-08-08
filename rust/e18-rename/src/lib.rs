@@ -1,8 +1,7 @@
 pub mod io;
 pub mod args;
 
-use crate::io::types;
-use crate::io::path::path;
+use crate::io::*;
 
 pub fn test_mod() {
     path::get_files(&"path".to_string());
