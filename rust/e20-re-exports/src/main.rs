@@ -1,10 +1,12 @@
+mod types;
+use types::data;
+
+use art::mix;
 use art::PrimaryColor;
 use art::SecondaryColor;
-use art::mix;
 
 mod quux {
     pub use self::foo::{bar, baz};
-    // pub use foo::{bar, baz};
 
     pub mod foo {
         pub fn bar() {}
@@ -18,4 +20,5 @@ fn main() {
     let r = mix(PrimaryColor::Blue, PrimaryColor::Red);
     println!("{:#?}", r);
     assert_eq!(SecondaryColor::Green, r);
+    data::foo();
 }

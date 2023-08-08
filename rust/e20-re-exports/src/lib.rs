@@ -8,6 +8,7 @@ pub use self::utils::mix;
 
 pub mod kinds {
     /// RYB 颜色模型的三原色
+    #[derive(Debug)]
     pub enum PrimaryColor {
         Red,
         Yellow,
@@ -28,6 +29,7 @@ pub mod utils {
 
     /// 将两种等量的原色混合生成调合色
     pub fn mix(c1: PrimaryColor, c2: PrimaryColor) -> SecondaryColor {
+        println!("{:?}, {:?}", c1, c2);
         SecondaryColor::Orange
     }
 }
