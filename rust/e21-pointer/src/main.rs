@@ -1,18 +1,20 @@
 use self::List::{Cons, Nil};
 use std::ops::Deref;
+use std::fmt::Display;
 
 fn main() {
-    let r: List<u32> = Cons(1, Box::new(Cons(2, Box::new(Nil))));
-    println!("{:#?}", r);
-    let r: List<f64> = Cons(1.12, Box::new(Cons(2.23, Box::new(Nil))));
-    println!("{:#?}", r);
+    let r1: List<u32> = Cons(1, Box::new(Cons(2, Box::new(Nil))));
+    println!("{:#?}", r1);
+    let r2: List<f64> = Cons(1.12, Box::new(Cons(2.23, Box::new(Nil))));
+    println!("{:#?}", r2);
 
-    let r = MyBox::new(String::from("hello"));
-    println!("{}", *r);
+    let r3 = MyBox::new(String::from("hello"));
+    println!("{}", *r3);
+    hello(&r3);
+    drop(r3);
 
-    hello(&r);
-    let r = SmartPointer::new(String::from("happy"));
-    println!("{}", *r);
+    let r4 = SmartPointer::new(String::from("smart"));
+    println!("{}", *r4);
 }
 
 #[derive(Debug)]
@@ -36,30 +38,32 @@ impl<T> Deref for MyBox<T> {
     }
 }
 
-struct SmartPointer {
-    x: String,
+impl<T> Drop for MyBox<T> {
+    fn drop(&mut self) {
+        println!("drop MyBox");
+    }
 }
 
-impl SmartPointer {
-    fn new(x: String) -> SmartPointer {
+struct SmartPointer<T: Display> {
+    x: T,
+}
+impl<T: Display> SmartPointer<T> {
+    fn new(x: T) -> SmartPointer<T> {
         SmartPointer { x }
     }
 }
-
-impl Deref for SmartPointer {
-    type Target = String;
-
-    fn deref(&self) -> &Self::Target {
+impl<T: Display> Deref for SmartPointer<T> {
+    type Target = T;
+    fn deref(&self) -> &T {
         &self.x
     }
 }
-
-impl Drop for SmartPointer {
+impl<T: Display> Drop for SmartPointer<T> {
     fn drop(&mut self) {
-        println!("drop MyBox: {}", &self.x);
+        println!("drop SmartPointer: {}", &self.x);
     }
 }
 
 fn hello(s: &str) {
-    println!("{}", s);
+    println!("hello call: {}", s);
 }
