@@ -8,7 +8,10 @@ pub struct LimitTracker<'a, T: 'a + Messenger> {
     max: usize,
 }
 
-impl <'a, T> LimitTracker<'a, T> where T: Messenger {
+impl<'a, T> LimitTracker<'a, T>
+where
+    T: Messenger,
+{
     pub fn new(messenger: &T, max: usize) -> LimitTracker<T> {
         LimitTracker {
             messenger,
@@ -20,7 +23,8 @@ impl <'a, T> LimitTracker<'a, T> where T: Messenger {
     pub fn set_value(&mut self, value: usize) {
         self.value = value;
         if self.value > self.max {
-            self.messenger.send(&format!("Limit reached: {}", self.value));
+            self.messenger
+                .send(&format!("Limit reached: {}", self.value));
         }
     }
 }
@@ -56,5 +60,4 @@ mod tests {
         limit_tracker.set_value(10);
         assert_eq!(messenger.sent_messages.len(), 1);
     }
-
 }
