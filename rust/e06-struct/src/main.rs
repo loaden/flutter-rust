@@ -21,6 +21,9 @@ fn main() {
 
     let cr = User::create(String::from("username"));
     println!("{:#?}", cr);
+
+    let c = Color(255, 128, 0);
+    println!("{:#?}", c);
 }
 
 #[derive(Debug)]
@@ -43,3 +46,6 @@ impl User {
         }
     }
 }
+
+#[derive(Debug)]
+struct Color(i32, i32, i32);
