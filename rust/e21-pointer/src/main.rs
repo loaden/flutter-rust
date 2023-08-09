@@ -9,6 +9,10 @@ fn main() {
 
     let r = MyBox::new(String::from("hello"));
     println!("{}", *r);
+
+    hello(&r);
+    let r = SmartPointer::new(String::from("happy"));
+    println!("{}", *r);
 }
 
 #[derive(Debug)]
@@ -30,4 +34,32 @@ impl<T> Deref for MyBox<T> {
     fn deref(&self) -> &T {
         &self.0
     }
+}
+
+struct SmartPointer {
+    x: String,
+}
+
+impl SmartPointer {
+    fn new(x: String) -> SmartPointer {
+        SmartPointer { x }
+    }
+}
+
+impl Deref for SmartPointer {
+    type Target = String;
+
+    fn deref(&self) -> &Self::Target {
+        &self.x
+    }
+}
+
+impl Drop for SmartPointer {
+    fn drop(&mut self) {
+        println!("drop MyBox: {}", &self.x);
+    }
+}
+
+fn hello(s: &str) {
+    println!("{}", s);
 }
