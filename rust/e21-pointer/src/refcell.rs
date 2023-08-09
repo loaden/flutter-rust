@@ -48,6 +48,8 @@ mod tests {
 
     impl Messenger for MockMessenger {
         fn send(&self, message: &str) {
+            // 同一时间只允许一个可变借用
+            // let mut _borrow = self.sent_messages.borrow_mut();
             self.sent_messages.borrow_mut().push(message.to_string());
         }
     }
