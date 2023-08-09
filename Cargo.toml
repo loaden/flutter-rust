@@ -29,4 +29,5 @@ members = [
     "rust/e18-rename",
     "rust/e19-closure",
     "rust/e20-re-exports",
+    "rust/e21-pointer",
 ]

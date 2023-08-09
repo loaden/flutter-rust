@@ -84,6 +84,10 @@ name = "e19-closure"
 version = "0.1.0"
 
 [[package]]
+name = "e21-pointer"
+version = "0.1.0"
+
+[[package]]
 name = "getrandom"
 version = "0.2.10"
 source = "registry+https://github.com/rust-lang/crates.io-index"
