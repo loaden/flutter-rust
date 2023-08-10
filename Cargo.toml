@@ -30,4 +30,5 @@ members = [
     "rust/e19-closure",
     "rust/e20-re-exports",
     "rust/e21-pointer",
+    "rust/e22-thread",
 ]
