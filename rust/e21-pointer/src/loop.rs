@@ -21,6 +21,14 @@ pub fn test_rc_refcell_loop() {
 
     // 引起循环引用，造成栈溢出
     // println!("a next item = {:?}", a.tail());
+
+    // 打破环引用
+    if let Some(link) = a.tail() {
+        *link.borrow_mut() = Rc::new(Nil);
+        println!("b rc count after break: {}", Rc::strong_count(&b));
+        println!("a rc count after break: {}", Rc::strong_count(&a));
+        println!("a next item = {:?}", a.tail());
+    }
 }
 
 #[derive(Debug)]
