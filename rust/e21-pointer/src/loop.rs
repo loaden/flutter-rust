@@ -2,7 +2,7 @@ use self::List::{Cons, Nil};
 use std::cell::RefCell;
 use std::rc::Rc;
 
-pub fn test_rc_refcell_loop() {
+pub fn rc_refcell_loop_test() {
     let a = Rc::new(Cons(5, RefCell::new(Rc::new(Nil))));
     println!("a initial rc count: {}", Rc::strong_count(&a));
     println!("a next item = {:?}", a.tail());

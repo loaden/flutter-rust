@@ -3,7 +3,7 @@ pub mod mixed {
     use std::cell::RefCell;
     use std::rc::Rc;
 
-    pub fn test_rc_refcell_pointer() {
+    pub fn rc_refcell_pointer_test() {
         let value = Rc::new(RefCell::new(5));
         let a = Rc::new(Cons(Rc::clone(&value), Rc::new(Nil)));
         let b = Cons(Rc::new(RefCell::new(6)), Rc::clone(&a));
