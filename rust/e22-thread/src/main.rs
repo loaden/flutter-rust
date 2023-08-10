@@ -2,8 +2,8 @@ use std::thread;
 use std::time::Duration;
 
 fn main() {
-    thread::spawn(|| {
-        for i in 1..=5 {
+    let h = thread::spawn(|| {
+        for i in 1..=8 {
             thread::sleep(Duration::from_secs(1));
             println!("thread: {}", i);
         }
@@ -13,4 +13,6 @@ fn main() {
         thread::sleep(Duration::from_secs(1));
         println!("main: {}", i);
     }
+
+    h.join().unwrap();
 }
