@@ -1,18 +1,9 @@
-use std::thread;
-use std::time::Duration;
+mod join;
+mod r#move;
+mod channel;
 
 fn main() {
-    let h = thread::spawn(|| {
-        for i in 1..=8 {
-            thread::sleep(Duration::from_secs(1));
-            println!("thread: {}", i);
-        }
-    });
-
-    for i in 10..15 {
-        thread::sleep(Duration::from_secs(1));
-        println!("main: {}", i);
-    }
-
-    h.join().unwrap();
+    // crate::join::thread_join();
+    // crate::r#move::thread_move();
+    crate::channel::thread_channel();
 }
