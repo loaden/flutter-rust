@@ -10,4 +10,5 @@ fn main() {
     // crate::channel::thread_channel();
     // crate::mpsc::thread_channel_mpsc();
     crate::mutex::thread_mutex();
+    crate::mutex::thread_mutex_arc();
 }
