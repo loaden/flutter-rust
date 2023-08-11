@@ -64,7 +64,10 @@ fn main() {
 
     let mut post = crate::rust::Post::new();
     post.add_text("text");
-    let post = post.request_review();
-    let post = post.approve();
-    println!("Content: {}", post.content());
+    post.add_text("ok");
+    let post2 = post.request_review();
+    // post.request_review(); // `post` moved due to this method call
+    let post3 = post2.approve();
+    // post2.approve(); // `post2` moved due to this method call
+    println!("Content: {}", post3.content());
 }
