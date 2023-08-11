@@ -8,6 +8,7 @@ mod state;
 use state::Post;
 
 mod state_ex;
+mod question;
 
 fn main() {
     let mut a = AveragedCollection::new();
@@ -57,4 +58,6 @@ fn main() {
     p.request_review();
     p.approve();
     println!("Approved content: {}", p.content());
+
+    crate::question::test_return_str();
 }
