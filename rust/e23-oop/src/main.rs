@@ -37,5 +37,9 @@ fn main() {
 
     let mut p = Post::new();
     p.add_text("text");
+    println!("Drawt content: {}", p.content());
     p.request_review();
+    println!("PendingReview content: {}", p.content());
+    p.approve();
+    println!("Approved content: {}", p.content());
 }
