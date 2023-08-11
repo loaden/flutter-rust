@@ -7,6 +7,8 @@ use gui::{Screen, Button, SelectBox};
 mod state;
 use state::Post;
 
+mod state_ex;
+
 fn main() {
     let mut a = AveragedCollection::new();
     a.add(3);
@@ -40,6 +42,19 @@ fn main() {
     println!("Drawt content: {}", p.content());
     p.request_review();
     println!("PendingReview content: {}", p.content());
+    p.approve();
+    println!("Approved content: {}", p.content());
+
+    let mut p = state_ex::Post::new();
+    p.add_text("state-ex");
+    println!("Drawt content: {}", p.content());
+    p.request_review();
+    println!("PendingReview content: {}", p.content());
+    p.reject();
+    println!("Drawt content: {}", p.content());
+    p.approve();
+    println!("Approved content: {}", p.content());
+    p.request_review();
     p.approve();
     println!("Approved content: {}", p.content());
 }
