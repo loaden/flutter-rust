@@ -9,7 +9,7 @@ fn main() {
 
 trait State {
     fn add_text<'a>(&self, post: &'a Post, text: &'a str) {}
-    fn content<'a>(&self, post: &'a Post) -> String;
+    fn content<'a>(&self, post: &'a Post) -> Ref<'a, String>;
 }
 pub struct Post {
     state: Option<Box<dyn State>>,
@@ -28,7 +28,7 @@ impl Post {
         self.state.as_ref().unwrap().add_text(self, text);
     }
 
-    pub fn content(&self) -> String {
+    pub fn content(&self) -> Ref<'_, String> {
         self.state.as_ref().unwrap().content(&self)
     }
 }
@@ -38,7 +38,7 @@ impl State for Draft {
     fn add_text<'a>(&self, post: &'a Post, text: &'a str) {
         post.content.borrow_mut().push_str(text);
     }
-    fn content<'a>(&self, post: &'a Post) -> String {
-        (&post.content.borrow()).to_string()
+    fn content<'a>(&self, post: &'a Post) -> Ref<'a, String> {
+        post.content.borrow()
     }
 }

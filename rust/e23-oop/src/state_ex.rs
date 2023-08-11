@@ -5,7 +5,7 @@ trait State {
     fn approve(self: Box<Self>) -> Box<dyn State>;
     fn reject(self: Box<Self>) -> Box<dyn State>;
     fn add_text<'a>(&self, post: &'a Post, text: &'a str) {}
-    fn content<'a>(&self, post: &'a Post) -> String {
+    fn content(&self, post: &Post) -> String {
         String::new()
     }
 }
@@ -89,7 +89,7 @@ impl State for Published {
     fn approve(self: Box<Self>) -> Box<dyn State> {
         self
     }
-    fn content<'a>(&self, post: &'a Post) -> String {
+    fn content(&self, post: &Post) -> String {
         (&post.content.borrow()).to_string()
     }
 }
