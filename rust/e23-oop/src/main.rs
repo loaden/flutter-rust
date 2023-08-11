@@ -9,6 +9,7 @@ use state::Post;
 
 mod state_ex;
 mod question;
+mod rust;
 
 fn main() {
     let mut a = AveragedCollection::new();
@@ -60,4 +61,10 @@ fn main() {
     println!("Approved content: {}", p.content());
 
     crate::question::test_return_str();
+
+    let mut post = crate::rust::Post::new();
+    post.add_text("text");
+    let post = post.request_review();
+    let post = post.approve();
+    println!("Content: {}", post.content());
 }
