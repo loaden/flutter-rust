@@ -32,4 +32,5 @@ members = [
     "rust/e21-pointer",
     "rust/e22-thread",
     "rust/e23-oop",
+    "rust/e24-match",
 ]
