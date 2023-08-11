@@ -1,5 +1,6 @@
-mod r#struct;
-use r#struct::AveragedCollection;
+mod oop;
+use oop::AveragedCollection;
+
 
 fn main() {
     let mut a = AveragedCollection::new();
