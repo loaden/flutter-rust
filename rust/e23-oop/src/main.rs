@@ -1,6 +1,8 @@
 mod oop;
 use oop::AveragedCollection;
 
+mod gui;
+use gui::{Screen, Button, SelectBox};
 
 fn main() {
     let mut a = AveragedCollection::new();
@@ -12,4 +14,21 @@ fn main() {
         Err(e) => println!("Error: {:?}", e),
     }
     println!("Average: {}", a.average());
+
+    let screen = Screen {
+        components: vec![
+            Box::new(Button {
+                width: 100,
+                height: 100,
+                label: "&Save".to_string(),
+            }),
+            Box::new(SelectBox {
+                width: 100,
+                height: 100,
+                options: vec!["Yes".to_string(), "No".to_string()],
+            }),
+        ],
+    };
+
+    screen.run();
 }
