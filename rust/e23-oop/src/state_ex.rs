@@ -1,32 +1,33 @@
+use std::cell::RefCell;
+
 trait State {
     fn request_review(self: Box<Self>) -> Box<dyn State>;
     fn approve(self: Box<Self>) -> Box<dyn State>;
     fn reject(self: Box<Self>) -> Box<dyn State>;
-    fn add_text<'a>(&self, post: &'a mut Post, text: &'a str) {}
-    fn content<'a>(&self, post: &'a Post) -> &'a str {
-        ""
+    fn add_text<'a>(&self, post: &'a Post, text: &'a str) {}
+    fn content<'a>(&self, post: &'a Post) -> String {
+        String::new()
     }
 }
 pub struct Post {
     state: Option<Box<dyn State>>,
-    content: String,
+    content: RefCell<String>,
 }
 
 impl Post {
     pub fn new() -> Post {
         Post {
             state: Some(Box::new(Draft {})),
-            content: String::new(),
+            content: RefCell::new(String::new()),
         }
     }
 
-    pub fn add_text(&mut self, text: &str) {
-        let s = self.state.as_ref().unwrap();
-        s.add_text(self, text);
+    pub fn add_text(&self, text: &str) {
+        self.state.as_ref().unwrap().add_text(self, text);
     }
 
-    pub fn content(&self) -> &str {
-        self.state.as_ref().unwrap().content(&self)
+    pub fn content(&self) -> String {
+        self.state.as_ref().unwrap().content(self)
     }
 
     pub fn request_review(&mut self) {
@@ -56,8 +57,8 @@ impl State for Draft {
     fn reject(self: Box<Self>) -> Box<dyn State> {
         self
     }
-    fn add_text<'a>(&self, post: &'a mut Post, text: &'a str) {
-        post.content.push_str(text);
+    fn add_text<'a>(&self, post: &'a Post, text: &'a str) {
+        post.content.borrow_mut().push_str(text);
     }
     fn approve(self: Box<Self>) -> Box<dyn State> {
         self
@@ -88,7 +89,7 @@ impl State for Published {
     fn approve(self: Box<Self>) -> Box<dyn State> {
         self
     }
-    fn content<'a>(&self, post: &'a Post) -> &'a str {
-        &post.content
+    fn content<'a>(&self, post: &'a Post) -> String {
+        (&post.content.borrow()).to_string()
     }
 }
