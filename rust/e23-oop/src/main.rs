@@ -4,6 +4,9 @@ use oop::AveragedCollection;
 mod gui;
 use gui::{Screen, Button, SelectBox};
 
+mod state;
+use state::Post;
+
 fn main() {
     let mut a = AveragedCollection::new();
     a.add(3);
@@ -31,4 +34,8 @@ fn main() {
     };
 
     screen.run();
+
+    let mut p = Post::new();
+    p.add_text("text");
+    p.request_review();
 }
