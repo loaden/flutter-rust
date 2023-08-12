@@ -33,4 +33,5 @@ members = [
     "rust/e22-thread",
     "rust/e23-oop",
     "rust/e24-match",
+    "rust/e25-unsafe",
 ]
