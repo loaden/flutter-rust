@@ -63,6 +63,16 @@ fn main() {
         Some(x) if x < 5 => println!("case 1 = {}", x),
         _ => (),
     }
+
+    let mut cfg = None;
+    let value = Some(5);
+    match (cfg, value) {
+        (Some(_), Some(_)) => (),
+        _ => {
+            cfg = value;
+        }
+    }
+    println!("cfg: {:?}", cfg);
 }
 
 struct Point {
