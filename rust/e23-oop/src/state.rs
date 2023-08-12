@@ -20,7 +20,10 @@ impl Post {
     }
 
     pub fn add_text(&mut self, text: &str) {
-        self.state.as_ref().unwrap().content(&self);
+        unsafe {
+            let p = self as *const Post;
+            (*p).state.as_ref().unwrap().add_text(self, text);
+        }
     }
 
     pub fn content(&self) -> &str {
