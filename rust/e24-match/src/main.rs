@@ -57,6 +57,12 @@ fn main() {
         Message::Write(s) => println!("s = {}", s),
         Message::Quit => println!("Quit"),
     }
+
+    let num = Some(4);
+    match num {
+        Some(x) if x < 5 => println!("case 1 = {}", x),
+        _ => (),
+    }
 }
 
 struct Point {
