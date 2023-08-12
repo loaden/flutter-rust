@@ -10,6 +10,13 @@ fn main() {
     let sr2 = &mut s;
     // _sr1.push('A');
     sr2.push('B');
+
+    let mut tx = 5;
+    let ty = &mut tx;
+    // tx += 3; // use of borrowed `tx`
+    *ty += 2;
+    tx += 3;
+    println!("{}", tx);
 }
 
 fn test_borrowing(s: &String) -> usize {
