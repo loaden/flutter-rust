@@ -1,6 +1,3 @@
-use std::cell::RefCell;
-use std::cell::Ref;
-
 fn main() {
     let mut p = Post::new();
     p.add_text(" world");
@@ -8,37 +5,40 @@ fn main() {
 }
 
 trait State {
-    fn add_text<'a>(&self, post: &'a Post, text: &'a str) {}
-    fn content<'a>(&self, post: &'a Post) -> Ref<'a, String>;
+    fn add_text<'a>(&self, _: &'a mut Post, _: &'a str) {}
+    fn content<'a>(&self, _: &'a Post) -> &'a str;
 }
 pub struct Post {
     state: Option<Box<dyn State>>,
-    content: RefCell<String>,
+    content: String,
 }
 
 impl Post {
     pub fn new() -> Post {
         Post {
             state: Some(Box::new(Draft {})),
-            content: RefCell::new(String::from("hello")),
+            content: String::from("hello"),
         }
     }
 
     pub fn add_text(&mut self, text: &str) {
-        self.state.as_ref().unwrap().add_text(self, text);
+        unsafe {
+            let p = self as *const Post;
+            (*p).state.as_ref().unwrap().add_text(self, text);
+        }
     }
 
-    pub fn content(&self) -> Ref<'_, String> {
+    pub fn content(&self) -> &str {
         self.state.as_ref().unwrap().content(&self)
     }
 }
 
 struct Draft {}
 impl State for Draft {
-    fn add_text<'a>(&self, post: &'a Post, text: &'a str) {
-        post.content.borrow_mut().push_str(text);
+    fn add_text<'a>(&self, post: &'a mut Post, text: &'a str) {
+        post.content.push_str(text);
     }
-    fn content<'a>(&self, post: &'a Post) -> Ref<'a, String> {
-        post.content.borrow()
+    fn content<'a>(&self, post: &'a Post) -> &'a str {
+        &post.content
     }
 }
