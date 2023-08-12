@@ -8,6 +8,9 @@ mod r#trait;
 use crate::r#trait::{Point, Human, Pilot, Wizard, Dog, Animal, OutlinePrint};
 use crate::r#trait::{Millimeters, Meters};
 
+mod wrapper;
+use wrapper::wrapper_test;
+
 fn main() {
     let mut p = Post::new();
     p.add_text(" world");
@@ -33,4 +36,6 @@ fn main() {
 
     println!("{}", Dog::name());
     println!("{}", <Dog as Animal>::name());
+
+    wrapper_test();
 }
