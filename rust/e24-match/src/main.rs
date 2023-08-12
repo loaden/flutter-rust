@@ -52,7 +52,7 @@ fn main() {
 
     let msg = Message::Quit;
     match msg {
-        Message::ChangeColor(r, g, b) => println!("{},{},{}", r, g ,b),
+        Message::ChangeColor(r, ..) => println!("{}", r),
         Message::Move { x, y } => println!("xy:{},{}", x, y),
         Message::Write(s) => println!("s = {}", s),
         Message::Quit => println!("Quit"),
