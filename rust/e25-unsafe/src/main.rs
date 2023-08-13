@@ -1,5 +1,5 @@
 mod raw_pointer;
-use raw_pointer::raw_pointer_test;
+use crate::raw_pointer::raw_pointer_test;
 
 mod state;
 use crate::state::Post;
@@ -9,7 +9,13 @@ use crate::r#trait::{Point, Human, Pilot, Wizard, Dog, Animal, OutlinePrint};
 use crate::r#trait::{Millimeters, Meters};
 
 mod wrapper;
-use wrapper::wrapper_test;
+use crate::wrapper::wrapper_test;
+
+mod dst;
+use crate::dst::dynamically_sized_type;
+
+mod function_pointer;
+use crate::function_pointer::function_pointer;
 
 fn main() {
     let mut p = Post::new();
@@ -38,4 +44,7 @@ fn main() {
     println!("{}", <Dog as Animal>::name());
 
     wrapper_test();
+
+    dynamically_sized_type();
+    function_pointer();
 }
