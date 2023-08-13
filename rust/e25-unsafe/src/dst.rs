@@ -1,4 +1,4 @@
 pub fn dynamically_sized_type() {
-    // let s1: str = "Hello there!";  // 编译出错
-    let _a = Box::new("aaa");
+    let b: Box<str> = "bbb".to_owned().into_boxed_str();
+    println!("{:?}, {:?}", b, b.as_ref());
 }
