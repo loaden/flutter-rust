@@ -1,12 +1,16 @@
-use std::net::TcpListener;
-use std::io::prelude::*;
-use std::net::TcpStream;
-use std::{fs, env};
+use std::{
+    env, fs,
+    io::prelude::*,
+    net::{TcpListener, TcpStream},
+};
 
 fn main() {
-    let listener = TcpListener::bind("127.1:7878").unwrap();
     let current_dir = env::current_dir().unwrap();
     println!("{}", current_dir.display());
+    let contents = fs::read_to_string("index.html").unwrap();
+    println!("{}", contents);
+
+    let listener = TcpListener::bind("127.1:7878").unwrap();
     for stream in listener.incoming() {
         let stream = stream.unwrap();
         handle_connection(stream);
@@ -14,10 +18,10 @@ fn main() {
 }
 
 fn handle_connection(mut stream: TcpStream) {
-    let mut buffer = [0; 512];
-    stream.read(&mut buffer).unwrap();
+    let status_line = "HTTP/1.1 200 OK";
     let contents = fs::read_to_string("index.html").unwrap();
-    let response = format!("HTTP/1.1 200 OK\r\n\r\n{}", contents);
-    stream.write(response.as_bytes()).unwrap();
-    stream.flush().unwrap();
+    let length = contents.len();
+    let response = format!("{status_line}\r\nContent-Length: {length}\r\n\r\n{contents}");
+    println!("{}", response);
+    stream.write_all(response.as_bytes()).unwrap();
 }
