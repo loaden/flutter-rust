@@ -36,4 +36,5 @@ members = [
     "rust/e25-unsafe",
     "rust/e26-advanced",
     "rust/e27-macro",
+    "rust/e28-derive",
 ]
