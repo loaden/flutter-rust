@@ -37,4 +37,5 @@ members = [
     "rust/e26-advanced",
     "rust/e27-macro",
     "rust/e28-derive",
+    "rust/e29-web",
 ]
