@@ -1,5 +1,6 @@
 use std::{
-    env, fs,
+    env, fs, thread,
+    time::Duration,
     io::{prelude::*, BufReader},
     net::{TcpListener, TcpStream},
 };
@@ -13,7 +14,9 @@ fn main() {
     let listener = TcpListener::bind("127.1:7878").unwrap();
     for stream in listener.incoming() {
         let stream = stream.unwrap();
-        handle_connection(stream);
+        thread::spawn(||{
+            handle_connection(stream);
+        });
     }
 }
 
@@ -24,6 +27,7 @@ fn handle_connection(mut stream: TcpStream) {
     let (status_line, filename) = if request_line == "GET / HTTP/1.1" {
         ("HTTP/1.1 200 OK", "index.html")
     } else {
+        thread::sleep(Duration::from_secs(8));
         ("HTTP/1.1 404 NOT FOUND", "404.html")
     };
 
