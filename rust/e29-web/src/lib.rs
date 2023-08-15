@@ -7,7 +7,7 @@ pub struct ThreadPool {
 }
 
 struct Worker {
-    thread: thread::JoinHandle<()>,
+    thread: Option<thread::JoinHandle<()>>,
     id: usize,
 }
 
@@ -22,7 +22,7 @@ impl Worker {
             receiver;
         });
         Worker {
-            thread,
+            thread: Some(thread),
             id: id + 1,
         }
     }
@@ -61,5 +61,17 @@ impl ThreadPool {
     {
         let job = Box::new(f);
         self.sender.send(job).unwrap();
+    }
+}
+
+impl Drop for ThreadPool {
+    fn drop(&mut self) {
+        for worker in &mut self.workers {
+            println!("Shutting down worker {}", worker.id);
+
+            if let Some(thread) = worker.thread.take() {
+                thread.join().unwrap();
+            }
+        }
     }
 }
