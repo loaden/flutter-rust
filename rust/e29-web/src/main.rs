@@ -5,6 +5,8 @@ use std::{
     net::{TcpListener, TcpStream},
 };
 
+use web::ThreadPool;
+
 fn main() {
     let current_dir = env::current_dir().unwrap();
     println!("{}", current_dir.display());
@@ -12,9 +14,11 @@ fn main() {
     println!("{}", contents);
 
     let listener = TcpListener::bind("127.1:7878").unwrap();
+    let pool = ThreadPool::new(4);
+
     for stream in listener.incoming() {
         let stream = stream.unwrap();
-        thread::spawn(||{
+        pool.execute(||{
             handle_connection(stream);
         });
     }

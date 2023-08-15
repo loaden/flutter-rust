@@ -1,5 +1,5 @@
 [package]
-name = "e29-web"
+name = "web"
 version = "0.1.0"
 edition = "2021"
 
