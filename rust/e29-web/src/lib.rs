@@ -36,7 +36,7 @@ impl Worker {
 
         Worker {
             thread: Some(thread),
-            id: id + 1,
+            id,
         }
     }
 }
