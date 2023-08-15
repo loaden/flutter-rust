@@ -3,14 +3,14 @@
 	"tasks": [
 		{
 			"type": "cargo",
-			"command": "run",
+			"command": "check",
 			"options": {
 				"cwd": "${fileDirname}",
 			},
 			"problemMatcher": [
 				"$rustc"
 			],
-			"label": "rust: cargo run",
+			"label": "rust: cargo check",
 			"group": {
 				"kind": "build",
 				"isDefault": true
