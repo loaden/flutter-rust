@@ -16,17 +16,17 @@ fn other_test2() {
         let r = longest(&a, &b);  // -|-------|-------+- 'r
         println!("{}", r);                      //  |       |       |
     }                                           // -|-------|-------+
-}                                               // -+-------+
+}                                               // -+-------+-
 
 fn other_test3() {
     let a = String::from("abcd");       // ---------+- 'a
     let r;                             // ---------|-------+- 'r
     let b = String::from("xyz");        // -+- 'b   |       |
     {                                           //  |       |       |
-        r = longest(&a, &b);               // -|-------|       |
-        println!("{}", r);                      //  |       |       |
-    }                                           // -|-------|       |
-}                                               // -+-------+-------+
+        r = longest(&a, &b);               // -|       |       |
+        println!("{}", r);                      //  |-------|-------+
+    }                                           // -|       |
+}                                               // -+-------+-
 
 fn longest<'d>(x: &'d String, y: &'d String) -> &'d String {
     if x.len() > y.len() {
