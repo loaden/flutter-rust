@@ -5,25 +5,25 @@ fn main() {
     let a = String::from("abcd");   // ---------+- 'a
     let b = String::from("xyz");    // -+- 'b   |
                                     //  |       |
-    let r = longest(&a, &b);   // -|-------|-------+- 'r
+    let r = longest(&a, &b);        // -|-------|-------+- 'r
     println!("{}", r);              //  |       |       |
 }                                   // -+-------+-------+-
 
 fn other_test2() {
-    let a = String::from("abcd");       // ---------+- 'a
-    let b = String::from("xyz");        // -+- 'b   |
-    {                                   //  |       |
-        let r = longest(&a, &b);   // -|-------|-------+- 'r
-        println!("{}", r);              //  |       |       |
-    }                                   // -|-------|-------+
-}                                       // -+-------+-
+    let a = String::from("abcd");   // ---------+- 'a
+    let b = String::from("xyz");    // -+- 'b   |
+    {                               //  |       |
+        let r = longest(&a, &b);    // -|-------|-------+- 'r
+        println!("{}", r);          //  |       |       |
+    }                               // -|-------|-------+
+}                                   // -+-------+-
 
 fn other_test3() {
     let a = String::from("abcd");   // ---------+- 'a
     let r;                          // ---------|-------+- 'r
     let b = String::from("xyz");    // -+- 'b   |       |
     {                               //  |       |       |
-        r = longest(&a, &b);   // -|       |       |
+        r = longest(&a, &b);        // -|       |       |
         println!("{}", r);          //  |-------|-------+
     }                               // -|       |
 }                                   // -+-------+-
