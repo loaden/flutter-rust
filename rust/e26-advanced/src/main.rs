@@ -11,7 +11,10 @@ use crate::dst::dynamically_sized_type;
 mod function_pointer;
 use crate::function_pointer::function_pointer;
 
-fn main() {
+use std::io::Result;
+// type Result<T> = std::io::Result<T>;
+
+fn main() -> Result<()> {
     let p1 = Point { x: 1, y: 0 };
     let p2 = Point { x: 2, y: 3 };
     let p3 = p1 + p2;
@@ -35,4 +38,6 @@ fn main() {
 
     dynamically_sized_type();
     function_pointer();
+
+    Ok(())
 }
