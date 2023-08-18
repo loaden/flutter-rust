@@ -1,8 +1,16 @@
 use iced::executor;
 use iced::{Application, Command, Element, Settings, Theme};
+use iced::window;
 
 pub fn main() -> iced::Result {
-    App::run(Settings::default())
+    let settings: Settings<()> = Settings {
+        window: window::Settings {
+            size: (800, 450),
+            ..Default::default()
+        },
+        ..Default::default()
+    };
+    App::run(settings)
 }
 
 struct App;
