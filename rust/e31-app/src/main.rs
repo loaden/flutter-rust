@@ -2,7 +2,7 @@ use iced::executor;
 use iced::{Application, Command, Element, Settings, Theme};
 use iced::window;
 
-pub fn main() -> iced::Result {
+fn main() -> iced::Result {
     let settings: Settings<()> = Settings {
         window: window::Settings {
             size: (800, 450),
