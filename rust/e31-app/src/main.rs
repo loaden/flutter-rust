@@ -3,7 +3,7 @@ use iced::{Application, Command, Element, Settings, Theme};
 use iced::window;
 
 fn main() -> iced::Result {
-    let settings: Settings<()> = Settings {
+    let settings = Settings {
         window: window::Settings {
             size: (800, 450),
             ..Default::default()
