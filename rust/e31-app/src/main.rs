@@ -39,8 +39,14 @@ impl Application for App {
         String::from("App - Iced")
     }
 
-    fn update(&mut self, _message: Message) -> Command<Message> {
-        todo!()
+    fn update(&mut self, message: Message) -> Command<Message> {
+        match message {
+            Message::Confirm => window::close(),
+            Message::Exit => {
+                self.exit_confirm = true;
+                Command::none()
+            }
+        }
     }
 
     fn view(&self) -> Element<Message> {
