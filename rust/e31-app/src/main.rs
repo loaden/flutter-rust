@@ -40,7 +40,7 @@ impl Application for App {
     }
 
     fn update(&mut self, _message: Message) -> Command<Message> {
-        Command::none()
+        todo!()
     }
 
     fn view(&self) -> Element<Message> {
