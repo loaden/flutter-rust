@@ -1,7 +1,7 @@
 use iced::executor;
 use iced::widget::{button, column, container};
-use iced::{Application, Command, Element, Settings, Theme, Alignment, Length};
 use iced::window;
+use iced::{Alignment, Application, Command, Element, Length, Settings, Theme};
 
 fn main() -> iced::Result {
     let settings = Settings {
@@ -54,9 +54,7 @@ impl Application for App {
         } else {
             column![
                 "Click the button to exit",
-                button("Exit")
-                    .padding([10, 20])
-                    .on_press(Message::Exit),
+                button("Exit").padding([10, 20]).on_press(Message::Exit),
             ]
         }
         .spacing(10)
