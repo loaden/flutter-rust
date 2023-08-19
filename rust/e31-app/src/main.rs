@@ -13,7 +13,10 @@ fn main() -> iced::Result {
     App::run(settings)
 }
 
-struct App {}
+#[derive(Default)]
+struct App {
+    exit_confirm: bool,
+}
 
 impl Application for App {
     type Executor = executor::Default;
@@ -22,7 +25,7 @@ impl Application for App {
     type Flags = ();
 
     fn new(_flags: ()) -> (Self, Command<Self::Message>) {
-        (Self {}, Command::none())
+        (Self::default(), Command::none())
     }
 
     fn title(&self) -> String {
