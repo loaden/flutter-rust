@@ -1,5 +1,5 @@
 use iced::executor;
-use iced::widget::{button, column, container};
+use iced::widget::{button, column, container, row};
 use iced::window;
 use iced::{Alignment, Application, Command, Element, Length, Settings, Theme};
 
@@ -50,7 +50,7 @@ impl Application for App {
             Message::Exit => {
                 self.exit_confirm = true;
                 Command::none()
-            },
+            }
         }
     }
 
@@ -58,10 +58,12 @@ impl Application for App {
         let content = if self.exit_confirm {
             column![
                 "Are you sure you want to exit?",
-                button("Yes, exit now")
-                    .padding([10, 20])
-                    .on_press(Message::Confirm),
-                button("Return").padding([10, 20]).on_press(Message::Return),
+                row![
+                    button("Yes, exit now")
+                        .padding([10, 20])
+                        .on_press(Message::Confirm),
+                    button("No").padding([10, 20]).on_press(Message::Return),
+                ].spacing(5)
             ]
         } else {
             column![
