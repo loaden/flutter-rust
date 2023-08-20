@@ -22,6 +22,7 @@ struct App {
 #[derive(Debug, Clone)]
 enum Message {
     Confirm,
+    Return,
     Exit,
 }
 
@@ -42,10 +43,14 @@ impl Application for App {
     fn update(&mut self, message: Message) -> Command<Message> {
         match message {
             Message::Confirm => window::close(),
+            Message::Return => {
+                self.exit_confirm = false;
+                Command::none()
+            }
             Message::Exit => {
                 self.exit_confirm = true;
                 Command::none()
-            }
+            },
         }
     }
 
@@ -56,6 +61,7 @@ impl Application for App {
                 button("Yes, exit now")
                     .padding([10, 20])
                     .on_press(Message::Confirm),
+                button("Return").padding([10, 20]).on_press(Message::Return),
             ]
         } else {
             column![
