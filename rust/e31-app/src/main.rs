@@ -63,7 +63,8 @@ impl Application for App {
                         .padding([10, 20])
                         .on_press(Message::Confirm),
                     button("No").padding([10, 20]).on_press(Message::Return),
-                ].spacing(5)
+                ]
+                .spacing(5)
             ]
         } else {
             column![
