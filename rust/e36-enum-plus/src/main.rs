@@ -1,6 +1,8 @@
 fn main() {
     let mut sts = Steps::new();
     sts.update(StepMessage::SliderChanged(19));
+    sts.next();
+    sts.update(StepMessage::LanguageSelected(Language::Rust));
 }
 
 struct Steps {
@@ -28,6 +30,10 @@ impl Steps {
     fn update(&mut self, msg: StepMessage) {
         self.steps[self.current].update(msg);
     }
+
+    fn next(&mut self) {
+        self.current += 1;
+    }
 }
 
 enum Step {
@@ -54,14 +60,26 @@ impl Step {
                     *value = val;
                 }
                 match self {
-                    Self::Slider { value } => println!("Update Value: {}", value),
+                    Self::Slider { value } => println!("Update Slider: {}", value),
                     _ => ()
                 }
             },
+            StepMessage::LanguageSelected(lng) => {
+                println!("Language New Value: {:?}", lng);
+                if let Step::Radio { selection } = self {
+                    println!("Language Old Value: {:?}", selection);
+                    *selection = Some(lng);
+                }
+                if let Step::Radio { selection } = self {
+                    println!("Update Language: {:?}", selection);
+                }
+            }
             _ => ()
         }
     }
 }
+
+#[derive(Debug)]
 enum Language {
     Rust,
     C,
