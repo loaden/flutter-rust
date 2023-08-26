@@ -32,11 +32,7 @@ enum Page {
 impl State {
     fn new() -> Self {
         Self {
-            pages: vec![
-                Page::Welcome,
-                Page::CheckBox,
-                Page::End,
-            ],
+            pages: vec![Page::Welcome, Page::CheckBox, Page::End],
             page: Page::Welcome,
         }
     }
@@ -71,21 +67,23 @@ impl Sandbox for Box {
     }
 
     fn update(&mut self, message: Message) {
+        let Box { state, debug } = self;
         match message {
-            Message::DebugMode(b) => self.debug = b,
-            Message::NextPage => self.state.next_page(),
-            Message::PrevPage => self.state.prev_page(),
+            Message::DebugMode(b) => *debug = b,
+            Message::NextPage => state.next_page(),
+            Message::PrevPage => state.prev_page(),
         }
     }
 
     fn view(&self) -> Element<Message> {
-        let mut content = match self.state.page {
+        let Box { state, .. } = self;
+        let mut content = match state.page {
             Page::Welcome => column!["Welcome!"],
             Page::CheckBox => column![checkbox("Debug mode", self.debug, Message::DebugMode),],
             Page::End => column!["End"],
         };
 
-        content = match self.state.page {
+        content = match state.page {
             Page::Welcome => content.push(button("Next").on_press(Message::NextPage)),
             Page::End => content.push(button("Prev").on_press(Message::PrevPage)),
             _ => content.push(
