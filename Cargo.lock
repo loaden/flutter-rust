@@ -619,6 +619,13 @@ name = "e37-iterator"
 version = "0.1.0"
 
 [[package]]
+name = "e38-tour"
+version = "0.1.0"
+dependencies = [
+ "iced",
+]
+
+[[package]]
 name = "env_logger"
 version = "0.10.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
