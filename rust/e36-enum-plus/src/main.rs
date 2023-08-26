@@ -1,5 +1,6 @@
 fn main() {
-    let st = Steps::new();
+    let mut sts = Steps::new();
+    sts.update(StepMessage::SliderChanged(19));
 }
 
 struct Steps {
@@ -20,8 +21,12 @@ impl Steps {
                 },
                 Step::End,
             ],
-            current: 0,
+            current: 1,
         }
+    }
+
+    fn update(&mut self, msg: StepMessage) {
+        self.steps[self.current].update(msg);
     }
 }
 
@@ -39,6 +44,24 @@ enum StepMessage {
     InputChanged(String),
 }
 
+impl Step {
+    fn update(&mut self, msg: StepMessage) {
+        match msg {
+            StepMessage::SliderChanged(val) => {
+                println!("Slider New Value: {}", val);
+                if let Self::Slider { value } = self {
+                    println!("Slider Old Value: {}", value);
+                    *value = val;
+                }
+                match self {
+                    Self::Slider { value } => println!("Update Value: {}", value),
+                    _ => ()
+                }
+            },
+            _ => ()
+        }
+    }
+}
 enum Language {
     Rust,
     C,
