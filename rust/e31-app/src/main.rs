@@ -4,6 +4,8 @@ use iced::window;
 use iced::{Alignment, Application, Command, Element, Length, Settings, Theme};
 
 fn main() -> iced::Result {
+    env_logger::init();
+    
     let settings = Settings {
         window: window::Settings {
             size: (800, 450),
