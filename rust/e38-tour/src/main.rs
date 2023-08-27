@@ -1,7 +1,6 @@
 use iced::alignment::Horizontal;
-use iced::widget::{
-    button, checkbox, column, container, horizontal_space, row, slider, text, Column,
-};
+use iced::widget::Column;
+use iced::widget::{button, checkbox, column, container, horizontal_space, row, slider, text};
 use iced::window;
 use iced::{executor, Color};
 use iced::{Application, Command, Element, Length, Settings, Theme};
