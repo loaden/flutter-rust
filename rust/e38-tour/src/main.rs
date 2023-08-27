@@ -1,6 +1,6 @@
 use iced::alignment::Horizontal;
 use iced::executor;
-use iced::widget::{button, column, horizontal_space, row, slider, text, Column};
+use iced::widget::{button, checkbox, column, horizontal_space, row, slider, text, Column};
 use iced::window;
 use iced::{Application, Command, Element, Length, Settings, Theme};
 
@@ -52,7 +52,7 @@ impl Application for App {
                 Command::none()
             }
             Message::StepMessage(msg) => {
-                steps.update(msg, *debug);
+                steps.update(msg, debug);
                 Command::none()
             }
         }
@@ -93,12 +93,17 @@ struct Steps {
 impl Steps {
     fn new() -> Self {
         Self {
-            steps: vec![Step::Welcome, Step::Slider { value: 36 }, Step::End],
+            steps: vec![
+                Step::Welcome,
+                Step::Debugger,
+                Step::Slider { value: 36 },
+                Step::End,
+            ],
             current: 0,
         }
     }
 
-    fn update(&mut self, msg: StepMessage, debug: bool) {
+    fn update(&mut self, msg: StepMessage, debug: &mut bool) {
         self.steps[self.current].update(msg, debug);
     }
 
@@ -129,21 +134,28 @@ impl Steps {
 
 enum Step {
     Welcome,
+    Debugger,
     Slider { value: u8 },
     End,
 }
 
 #[derive(Debug, Clone)]
 enum StepMessage {
+    DebugToggled(bool),
     SliderChanged(u8),
 }
 
 impl<'a> Step {
-    fn update(&mut self, msg: StepMessage, debug: bool) {
+    fn update(&mut self, msg: StepMessage, debug: &mut bool) {
         match msg {
             StepMessage::SliderChanged(val) => {
                 if let Self::Slider { value } = self {
                     *value = val;
+                }
+            }
+            StepMessage::DebugToggled(dbg) => {
+                if let Self::Debugger = self {
+                    *debug = dbg;
                 }
             }
         }
@@ -152,6 +164,7 @@ impl<'a> Step {
     fn view(&self, debug: bool) -> Element<StepMessage> {
         match self {
             Step::Welcome => Self::welcome(),
+            Step::Debugger => Self::debugger(debug),
             Step::Slider { value } => Self::slider(*value),
             Step::End => Self::end(),
         }
@@ -167,6 +180,15 @@ impl<'a> Step {
             "This is a simple tour meant to showcase a bunch of widgets \
                 that can be easily implemented on top of Iced.",
         )
+    }
+
+    fn debugger(debug: bool) -> Column<'a, StepMessage> {
+        Self::container("Debugger")
+            .push(
+                "You can ask Iced to visually explain the layouting of the \
+                 different elements comprising your UI!",
+            )
+            .push(checkbox("Explain layout", debug, StepMessage::DebugToggled))
     }
 
     fn slider(value: u8) -> Column<'a, StepMessage> {
