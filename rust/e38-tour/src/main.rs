@@ -1,6 +1,8 @@
 use iced::alignment::Horizontal;
 use iced::executor;
-use iced::widget::{button, checkbox, column, horizontal_space, row, slider, text, Column};
+use iced::widget::{
+    button, checkbox, column, container, horizontal_space, row, slider, text, Column,
+};
 use iced::window;
 use iced::{Application, Command, Element, Length, Settings, Theme};
 
@@ -71,10 +73,12 @@ impl Application for App {
             controls = controls.push(button("Next").on_press(Message::PageNext));
         }
 
-        column![steps.view(self.debug).map(Message::StepMessage), controls,]
+        let content = column![steps.view(self.debug).map(Message::StepMessage), controls,]
+            .max_width(600)
             .spacing(20)
-            .padding(20)
-            .into()
+            .padding(20);
+
+        container(content).width(Length::Fill).center_x().into()
     }
 }
 
