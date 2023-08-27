@@ -1,9 +1,9 @@
 use iced::alignment::Horizontal;
-use iced::executor;
 use iced::widget::{
     button, checkbox, column, container, horizontal_space, row, slider, text, Column,
 };
 use iced::window;
+use iced::{executor, Color};
 use iced::{Application, Command, Element, Length, Settings, Theme};
 
 fn main() -> iced::Result {
@@ -32,7 +32,7 @@ impl Application for App {
         (
             Self {
                 steps: Steps::new(),
-                debug: true,
+                debug: false,
             },
             Command::none(),
         )
@@ -73,12 +73,21 @@ impl Application for App {
             controls = controls.push(button("Next").on_press(Message::PageNext));
         }
 
-        let content = column![steps.view(self.debug).map(Message::StepMessage), controls,]
-            .max_width(600)
-            .spacing(20)
-            .padding(20);
+        let content: Element<_> =
+            column![steps.view(self.debug).map(Message::StepMessage), controls,]
+                .max_width(600)
+                .spacing(20)
+                .padding(20)
+                .into();
 
-        container(content).width(Length::Fill).center_x().into()
+        container(if self.debug {
+            content.explain(Color::from_rgb8(0, 180, 0))
+        } else {
+            content
+        })
+        .width(Length::Fill)
+        .center_x()
+        .into()
     }
 }
 
