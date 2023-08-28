@@ -3,11 +3,12 @@ fn main() {
     slider(0..=10, 5, |_| StepMessage::SliderChanged(8));
 }
 
-#[derive(Debug, Clone)]
+#[derive(Clone)]
 enum StepMessage {
     SliderChanged(u8),
 }
 
+#[allow(unused_variables)]
 pub fn slider<'a, T, Message>(
     range: std::ops::RangeInclusive<T>,
     value: T,
