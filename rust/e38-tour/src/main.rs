@@ -1,5 +1,5 @@
 use iced::alignment::Horizontal;
-use iced::widget::{button, checkbox, horizontal_space, slider, text, toggler};
+use iced::widget::{button, checkbox, horizontal_space, slider, text, text_input, toggler};
 use iced::widget::{column, container, row};
 use iced::widget::{Column, Container};
 use iced::window;
@@ -113,6 +113,10 @@ impl Steps {
                     can_continue: false,
                 },
                 Step::Slider { value: 36 },
+                Step::TextInput {
+                    value: String::new(),
+                    is_secure: false,
+                },
                 Step::End,
             ],
             current: 0,
@@ -153,6 +157,7 @@ enum Step {
     Debugger,
     Toggler { can_continue: bool },
     Slider { value: u8 },
+    TextInput { value: String, is_secure: bool },
     End,
 }
 
@@ -161,6 +166,8 @@ enum StepMessage {
     DebugToggled(bool),
     TogglerChanged(bool),
     SliderChanged(u8),
+    InputChanged(String),
+    ToggleSecureInput(bool),
 }
 
 impl<'a> Step {
@@ -181,6 +188,16 @@ impl<'a> Step {
                     *can_continue = value;
                 }
             }
+            StepMessage::InputChanged(str) => {
+                if let Self::TextInput { value, .. } = self {
+                    *value = str;
+                }
+            }
+            StepMessage::ToggleSecureInput(flag) => {
+                if let Self::TextInput { is_secure, .. } = self {
+                    *is_secure = flag;
+                }
+            }
         }
     }
 
@@ -190,6 +207,7 @@ impl<'a> Step {
             Self::Debugger => Self::debugger(debug),
             Self::Toggler { can_continue } => Self::toggler(*can_continue),
             Self::Slider { value } => Self::slider(*value),
+            Self::TextInput { value, is_secure } => Self::text_input(value, *is_secure),
             Self::End => Self::end(),
         }
         .into()
@@ -198,6 +216,8 @@ impl<'a> Step {
     fn can_continue(&self) -> bool {
         if let Self::Toggler { can_continue } = self {
             *can_continue
+        } else if let Self::TextInput { value, .. } = self {
+            !value.is_empty()
         } else {
             true
         }
@@ -247,6 +267,39 @@ impl<'a> Step {
                 text(value.to_string())
                     .width(Length::Fill)
                     .horizontal_alignment(Horizontal::Center),
+            )
+    }
+
+    fn text_input(value: &str, is_secure: bool) -> Column<'a, StepMessage> {
+        let text_input = text_input("Type something to continue...", value)
+            .on_input(StepMessage::InputChanged)
+            .padding(10)
+            .size(30);
+
+        Self::container("Text input")
+            .push("Use a text input to ask for different kinds of information.")
+            .push(if is_secure {
+                text_input.password()
+            } else {
+                text_input
+            })
+            .push(checkbox(
+                "Enable password mode",
+                is_secure,
+                StepMessage::ToggleSecureInput,
+            ))
+            .push(
+                "A text input produces a message every time it changes. It is \
+                 very easy to keep track of its contents:",
+            )
+            .push(
+                text(if value.is_empty() {
+                    "You have not typed anything yet..."
+                } else {
+                    value
+                })
+                .width(Length::Fill)
+                .horizontal_alignment(Horizontal::Center),
             )
     }
 
