@@ -1,7 +1,7 @@
 use iced::alignment::Horizontal;
-use iced::widget::Column;
-use iced::widget::{button, checkbox, horizontal_space, slider, text};
+use iced::widget::{button, checkbox, horizontal_space, slider, text, toggler};
 use iced::widget::{column, container, row};
+use iced::widget::{Column, Container};
 use iced::window;
 use iced::{executor, Color};
 use iced::{Application, Command, Element, Length, Settings, Theme};
@@ -69,7 +69,7 @@ impl Application for App {
         }
 
         controls = controls.push(horizontal_space(Length::Fill));
-        if steps.has_next() {
+        if steps.can_next() {
             controls = controls.push(button("Next").on_press(Message::PageNext));
         }
 
@@ -109,6 +109,9 @@ impl Steps {
             steps: vec![
                 Step::Welcome,
                 Step::Debugger,
+                Step::Toggler {
+                    can_continue: false,
+                },
                 Step::Slider { value: 36 },
                 Step::End,
             ],
@@ -125,7 +128,7 @@ impl Steps {
     }
 
     fn go_next(&mut self) {
-        if self.has_next() {
+        if self.can_next() {
             self.current += 1;
         }
     }
@@ -136,8 +139,8 @@ impl Steps {
         }
     }
 
-    fn has_next(&self) -> bool {
-        self.current + 1 < self.steps.len()
+    fn can_next(&self) -> bool {
+        self.current + 1 < self.steps.len() && self.steps[self.current].can_continue()
     }
 
     fn can_back(&self) -> bool {
@@ -148,6 +151,7 @@ impl Steps {
 enum Step {
     Welcome,
     Debugger,
+    Toggler { can_continue: bool },
     Slider { value: u8 },
     End,
 }
@@ -155,6 +159,7 @@ enum Step {
 #[derive(Debug, Clone)]
 enum StepMessage {
     DebugToggled(bool),
+    TogglerChanged(bool),
     SliderChanged(u8),
 }
 
@@ -171,6 +176,11 @@ impl<'a> Step {
                     *debug = dbg;
                 }
             }
+            StepMessage::TogglerChanged(value) => {
+                if let Self::Toggler { can_continue } = self {
+                    *can_continue = value;
+                }
+            }
         }
     }
 
@@ -178,10 +188,19 @@ impl<'a> Step {
         match self {
             Step::Welcome => Self::welcome(),
             Step::Debugger => Self::debugger(debug),
+            Step::Toggler { can_continue } => Self::toggler(*can_continue),
             Step::Slider { value } => Self::slider(*value),
             Step::End => Self::end(),
         }
         .into()
+    }
+
+    fn can_continue(&self) -> bool {
+        if let Self::Toggler { can_continue } = self {
+            *can_continue
+        } else {
+            true
+        }
     }
 
     fn container(title: &str) -> Column<'a, StepMessage> {
@@ -202,6 +221,19 @@ impl<'a> Step {
                  different elements comprising your UI!",
             )
             .push(checkbox("Explain layout", debug, StepMessage::DebugToggled))
+    }
+
+    fn toggler(can_continue: bool) -> Column<'a, StepMessage> {
+        Self::container("Toggler")
+            .push("A toggler is mostly used to enable or disable something.")
+            .push(
+                Container::new(toggler(
+                    "Toggle me to continue...".to_owned(),
+                    can_continue,
+                    StepMessage::TogglerChanged,
+                ))
+                .padding([0, 40]),
+            )
     }
 
     fn slider(value: u8) -> Column<'a, StepMessage> {
