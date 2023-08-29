@@ -186,11 +186,11 @@ impl<'a> Step {
 
     fn view(&self, debug: bool) -> Element<StepMessage> {
         match self {
-            Step::Welcome => Self::welcome(),
-            Step::Debugger => Self::debugger(debug),
-            Step::Toggler { can_continue } => Self::toggler(*can_continue),
-            Step::Slider { value } => Self::slider(*value),
-            Step::End => Self::end(),
+            Self::Welcome => Self::welcome(),
+            Self::Debugger => Self::debugger(debug),
+            Self::Toggler { can_continue } => Self::toggler(*can_continue),
+            Self::Slider { value } => Self::slider(*value),
+            Self::End => Self::end(),
         }
         .into()
     }
