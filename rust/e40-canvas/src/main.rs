@@ -1,4 +1,4 @@
-use iced::{Element, Sandbox, Settings};
+use iced::{Element, Sandbox, Settings, Theme};
 
 fn main() -> iced::Result {
     Ewl::run(Settings::default())
@@ -21,5 +21,9 @@ impl Sandbox for Ewl {
 
     fn view(&self) -> Element<Self::Message> {
         "".into()
+    }
+
+    fn theme(&self) -> Theme {
+        Theme::Dark
     }
 }
