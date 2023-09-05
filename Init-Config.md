@@ -9,6 +9,7 @@
 * 地址：<https://www.rust-lang.org/zh-CN/tools/install>
 * 升级：`$ rustup update`
 * 查看：`$ rustup show`
+* 格式化：`$ rustup component add rustfmt`
 
 ### 2. 安装配置 Flutter
 
