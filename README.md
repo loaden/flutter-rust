@@ -26,6 +26,8 @@
 replace-with = 'ustc'
 [source.ustc]
 registry = "git://mirrors.ustc.edu.cn/crates.io-index/"
+[net]
+git-fetch-with-cli = true
 
 ```
 
@@ -46,6 +48,7 @@ registry = "git://mirrors.ustc.edu.cn/crates.io-index/"
 ### 2.1.1. 安装配置 Tauri
 
 > `cargo install create-tauri-app --locked`
+> `cargo install tauri-cli`
 
 ### 2.1.2. nodejs 转换淘宝源和官方源
 
