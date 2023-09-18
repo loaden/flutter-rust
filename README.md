@@ -178,3 +178,6 @@ yarn config set registry https://registry.npmjs.org/
   > open -a Simulator
 * 运行应用程序
   > flutter run
+* 编译发布
+  > flutter build windows
+  > flutter build apk
