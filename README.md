@@ -181,3 +181,73 @@ yarn config set registry https://registry.npmjs.org/
 * 编译发布
   > flutter build windows
   > flutter build apk
+
+## Rust FFI 实战
+
+* 创建Flutter应用
+  > flutter create gitgui
+* 进入gitgui目录，创建rust库
+  > cargo new native --lib
+* 修改native库配置 Cargo.toml
+
+  ```toml
+  [lib]
+  crate-type = ["lib", "cdylib", "staticlib"]
+
+  [dependencies]
+  flutter_rust_bridge = "1"
+  ```
+
+* 安装转换工具
+  > cargo install flutter_rust_bridge_codegen
+* 安装Flutter项目FFI依赖
+  > flutter pub add --dev ffigen
+  > flutter pub add ffi
+* 配置Flutter项目
+  * 连接桥Flutter端
+    > flutter pub add flutter_rust_bridge
+  * 生成平台绑定中使用的 Dart 代码
+    > flutter pub add -d build_runner
+  * 用于将对象从 Rust 传输到 Flutter
+    > flutter pub add -d build_runner
+    > flutter pub add freezed_annotation
+  * 将我们的原生 Rust 项目与 Flutter 集成：在linux、windows目录下的CMakeLists.txt添加内容
+
+```cmake
+# Generated plugin build rules, which manage building the plugins and adding
+# them to the application.
+include(flutter/generated_plugins.cmake)
+
+# Include the CMake build file of our Rust project here.
+include(../rust.cmake)
+```
+
+rust.cmake 内容：
+
+```cmake
+# We include Corrosion inline here, but ideally in a project with
+# many dependencies we would need to install Corrosion on the system.
+# See instructions on https://github.com/AndrewGaspar/corrosion#cmake-install
+# Once done, uncomment this line:
+# find_package(Corrosion REQUIRED)
+
+include(FetchContent)
+
+FetchContent_Declare(
+    Corrosion
+    GIT_REPOSITORY https://github.com/AndrewGaspar/corrosion.git
+    GIT_TAG origin/master # Optionally specify a version tag or branch here
+)
+
+FetchContent_MakeAvailable(Corrosion)
+
+corrosion_import_crate(MANIFEST_PATH ../native/Cargo.toml IMPORTED_CRATES imported_crates)
+target_link_libraries(${BINARY_NAME} PRIVATE ${imported_crates})
+foreach(imported_crate ${imported_crates})
+  list(APPEND PLUGIN_BUNDLED_LIBRARIES $<TARGET_FILE:${imported_crate}-shared>)
+endforeach()
+
+```
+
+  * 生成平台绑定的代码
+  > flutter_rust_bridge_codegen --rust-input native/src/api.rs --dart-output lib/bridge_generated.dart --dart-decl-output lib/bridge_definitions.dart
