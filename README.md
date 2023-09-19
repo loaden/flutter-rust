@@ -200,6 +200,7 @@ yarn config set registry https://registry.npmjs.org/
 
 * 安装转换工具
   > cargo install flutter_rust_bridge_codegen
+  > cargo install cargo-expand
 * 安装Flutter项目FFI依赖
   > flutter pub add --dev ffigen
   > flutter pub add ffi
@@ -250,4 +251,7 @@ endforeach()
 ```
 
   * 生成平台绑定的代码
-  > flutter_rust_bridge_codegen --rust-input native/src/api.rs --dart-output lib/bridge_generated.dart --dart-decl-output lib/bridge_definitions.dart
+    > flutter_rust_bridge_codegen --rust-input native/src/api.rs --dart-output lib/bridge_generated.dart --dart-decl-output lib/bridge_definitions.dart
+
+* 获取Flutter依赖
+  > flutter pub get
