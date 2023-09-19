@@ -212,46 +212,7 @@ yarn config set registry https://registry.npmjs.org/
   * 用于将对象从 Rust 传输到 Flutter
     > flutter pub add -d build_runner
     > flutter pub add freezed_annotation
-  * 将我们的原生 Rust 项目与 Flutter 集成：在linux、windows目录下的CMakeLists.txt添加内容
-
-```cmake
-# Generated plugin build rules, which manage building the plugins and adding
-# them to the application.
-include(flutter/generated_plugins.cmake)
-
-# Include the CMake build file of our Rust project here.
-include(../rust.cmake)
-```
-
-rust.cmake 内容：
-
-```cmake
-# We include Corrosion inline here, but ideally in a project with
-# many dependencies we would need to install Corrosion on the system.
-# See instructions on https://github.com/AndrewGaspar/corrosion#cmake-install
-# Once done, uncomment this line:
-# find_package(Corrosion REQUIRED)
-
-include(FetchContent)
-
-FetchContent_Declare(
-    Corrosion
-    GIT_REPOSITORY https://github.com/AndrewGaspar/corrosion.git
-    GIT_TAG origin/master # Optionally specify a version tag or branch here
-)
-
-FetchContent_MakeAvailable(Corrosion)
-
-corrosion_import_crate(MANIFEST_PATH ../native/Cargo.toml IMPORTED_CRATES imported_crates)
-target_link_libraries(${BINARY_NAME} PRIVATE ${imported_crates})
-foreach(imported_crate ${imported_crates})
-  list(APPEND PLUGIN_BUNDLED_LIBRARIES $<TARGET_FILE:${imported_crate}-shared>)
-endforeach()
-
-```
-
   * 生成平台绑定的代码
     > flutter_rust_bridge_codegen --rust-input native/src/api.rs --dart-output lib/bridge_generated.dart --dart-decl-output lib/bridge_definitions.dart
-
-* 获取Flutter依赖
-  > flutter pub get
+  * 获取Flutter依赖
+    > flutter pub get
