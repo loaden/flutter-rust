@@ -8,7 +8,7 @@
 ### 1.1.1. 安装配置 Rust
 
 * 地址：<https://www.rust-lang.org/zh-CN/tools/install>
-* 升级：`$ rustup update`
+* 升级：`$ rustup update stable`
 * 查看：`$ rustup show`
 * 格式化：`$ rustup component add rustfmt`
 
@@ -85,7 +85,7 @@ yarn config set registry https://registry.npmjs.org/
 ### 3.1.1. 安装配置 Flutter
 
 * 地址：<https://flutter.cn/docs/get-started/install>
-* 解压：$HOME/Dev/flutter 或者 D:\Dev\flutter
+* 解压：$HOME/Dev/Flutter 或者 D:\Dev\Flutter
 * 将解压路径添加到环境变量PATH中
 * 查询版本：`$ flutter --version`
 * 升级版本：`$ flutter upgrade`
