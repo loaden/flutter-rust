@@ -216,3 +216,7 @@ yarn config set registry https://registry.npmjs.org/
     > flutter_rust_bridge_codegen --rust-input native/src/api.rs --dart-output lib/bridge_generated.dart --dart-decl-output lib/bridge_definitions.dart
   * 获取Flutter依赖
     > flutter pub get
+  * 查看Flutter过时包
+    > flutter pub outdated
+  * 更新Flutter依赖
+    > flutter pub upgrade
