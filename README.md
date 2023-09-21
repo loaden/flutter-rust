@@ -33,8 +33,7 @@ git-fetch-with-cli = true
 
 ### 1.1.4. 可能缺失的依赖
 
-> rust-src glibc llvm-libs gcc pkg-config openssl webkit2gtk
-
+> rust-src glibc llvm-libs gcc pkg-config openssl
 ## 1.2. 工程配置
 
 * 应用程序
@@ -63,6 +62,10 @@ npm config set registry https://registry.npmjs.org/
 yarn config set registry https://registry.npm.taobao.org/
 yarn config set registry https://registry.npmjs.org/
 ```
+
+### 2.1.3. 可能缺失的依赖
+
+> webkit2gtk
 
 ## 2.2. 工程配置
 
@@ -182,7 +185,7 @@ yarn config set registry https://registry.npmjs.org/
   > flutter build windows
   > flutter build apk
 
-## Rust FFI 实战
+## 3.5. Rust FFI 实战
 
 * 创建Flutter应用
   > flutter create gitgui
