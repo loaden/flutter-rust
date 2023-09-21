@@ -33,7 +33,7 @@ git-fetch-with-cli = true
 
 ### 1.1.4. 可能缺失的依赖
 
-> glibc llvm-libs gcc pkg-config openssl webkit2gtk
+> rust-src glibc llvm-libs gcc pkg-config openssl webkit2gtk
 
 ## 1.2. 工程配置
 
