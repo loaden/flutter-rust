@@ -143,6 +143,11 @@ yarn config set registry https://registry.npmjs.org/
 
 * Android SDK Tools 安装 Google USB Driver
 
+### Linux 平台
+
+* 可能缺失的依赖
+  > which clang cmake ninja
+
 ## 3.3. Rust FFI 连接
 
 ### 3.3.1. 安装配置
