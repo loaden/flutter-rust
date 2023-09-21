@@ -33,7 +33,8 @@ git-fetch-with-cli = true
 
 ### 1.1.4. 可能缺失的依赖
 
-> rust-src glibc llvm-libs gcc pkg-config openssl
+  > rust-src glibc llvm-libs gcc pkg-config openssl
+
 ## 1.2. 工程配置
 
 * 应用程序
@@ -50,8 +51,11 @@ git-fetch-with-cli = true
 
 ### 2.1.1. 安装配置 Tauri
 
-> `cargo install create-tauri-app --locked`
-> `cargo install tauri-cli`
+```shell
+cargo install create-tauri-app --locked
+cargo install tauri-cli
+```
+
 
 ### 2.1.2. nodejs 转换淘宝源和官方源
 
