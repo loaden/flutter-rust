@@ -210,9 +210,13 @@ yarn config set registry https://registry.npmjs.org/
   * 生成平台绑定中使用的 Dart 代码
     > flutter pub add -d build_runner
   * 用于将对象从 Rust 传输到 Flutter
-    > flutter pub add -d build_runner
+    > flutter pub add -d freezed
     > flutter pub add freezed_annotation
   * 生成平台绑定的代码
     > flutter_rust_bridge_codegen --rust-input native/src/api.rs --dart-output lib/bridge_generated.dart --dart-decl-output lib/bridge_definitions.dart
   * 获取Flutter依赖
     > flutter pub get
+  * 查看Flutter过时包
+    > flutter pub outdated
+  * 更新Flutter依赖
+    > flutter pub upgrade
