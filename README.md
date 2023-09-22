@@ -184,6 +184,16 @@ yarn config set registry https://registry.npmjs.org/
 
 * 出入参数如果内含其他结构体，加上Option。
 
+  ```rust
+  pub fn query_report(query: ReportQuery) -> ReportPageDTO {
+      APP.lock().unwrap().query_report(query)
+  }
+  pub struct ReportPageDTO {
+      pub total: i32,
+      pub list: Option<Vec<ReportDTO>>,
+  }
+  ```
+
 ## 3.4. 工程配置
 
 * 创建应用程序
