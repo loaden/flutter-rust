@@ -173,6 +173,8 @@ yarn config set registry https://registry.npmjs.org/
   * 先引用so文件，这里还要考虑windows平台，所以也可能是dll。
   * 应用后直接使用就行了，接口是根据api.rs生成的，所有出入参都有Dart对应的类（名字一样，类型可能有细微差别）。
 
+* 出入参数如果内含其他结构体，加上Option。
+
 ## 3.4. 工程配置
 
 * 创建应用程序
