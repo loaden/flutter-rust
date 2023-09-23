@@ -146,7 +146,7 @@ yarn config set registry https://registry.npmjs.org/
 ### Linux 平台
 
 * 可能缺失的依赖
-  > which clang cmake ninja
+  > which zip pkg-config clang cmake ninja libgtk-3-dev
 
 ## 3.3. Rust FFI 连接
 
