@@ -147,6 +147,8 @@ yarn config set registry https://registry.npmjs.org/
 
 * 可能缺失的依赖
   > which zip pkg-config clang cmake ninja libgtk-3-dev
+* 可能需要添加软链接
+  > sudo ln -s /usr/lib/llvm-14/lib/libclang.so.1 /usr/lib/llvm-14/lib/libclang.so
 
 ## 3.3. Rust FFI 连接
 
