@@ -637,6 +637,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "e41-command"
+version = "0.1.0"
+
+[[package]]
 name = "env_logger"
 version = "0.10.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
