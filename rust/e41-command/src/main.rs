@@ -15,9 +15,9 @@ fn main() -> io::Result<()> {
         let mut str = String::new();
         stderr.read_to_string(&mut str)?;
         println!("ERROR: {:#?}", str);
-        let v: Vec<_> = str.split("InstalledDir: ").collect();
-        println!("Target: {:#?}", v[1].trim_end());
-        let mut path = PathBuf::from(v[1].trim_end());
+        let v: Vec<_> = str.split("InstalledDir:").collect();
+        println!("Target: {:#?}", v[1]);
+        let mut path = PathBuf::from(v[1].trim());
         path.pop();
         if let Some(s) = path.to_str() {
             println!("DONE: {:?}", s);
