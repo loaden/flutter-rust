@@ -33,7 +33,7 @@ git-fetch-with-cli = true
 
 ### 1.1.4. 可能缺失的依赖
 
-  > rust-src glibc llvm-libs gcc pkg-config openssl
+  > glibc llvm-libs gcc pkg-config openssl
 
 ## 1.2. 工程配置
 
@@ -146,7 +146,9 @@ yarn config set registry https://registry.npmjs.org/
 ### Linux 平台
 
 * 可能缺失的依赖
-  > which clang cmake ninja
+  > which zip pkg-config clang cmake ninja libgtk-3-dev
+* 可能需要添加软链接
+  > sudo ln -s /usr/lib/llvm-14/lib/libclang.so.1 /usr/lib/llvm-14/lib/libclang.so
 
 ## 3.3. Rust FFI 连接
 
