@@ -1,5 +1,5 @@
 use std::fs::{self, File, OpenOptions};
-use std::io::{self, Read, Write};
+use std::io::{self, Read, Seek, Write};
 
 fn main() -> io::Result<()> {
     let filename = "test.txt";
@@ -14,7 +14,7 @@ fn main() -> io::Result<()> {
     };
 
     file.write_all(b"test")?;
-    file.flush()?;
+    file.rewind()?;
 
     let mut buf = String::new();
     match file.read_to_string(&mut buf) {
