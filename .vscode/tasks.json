@@ -5,8 +5,12 @@
 			"label": "rust: cargo run",
 			"type": "cargo",
 			"command": "run",
+			"args": [
+				"--manifest-path",
+				"${fileDirname}/../Cargo.toml"
+			],
 			"options": {
-				"cwd": "${fileDirname}",
+				"cwd": "${workspaceFolder}",
 			},
 			"problemMatcher": [
 				"$rustc"

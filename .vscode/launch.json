@@ -7,14 +7,15 @@
         {
             "type": "lldb",
             "request": "launch",
-            "name": "Debug Rust",
+            "name": "Rust Debugging",
             "cargo": {
                 "args": [
                     "build",
                     "--manifest-path",
                     "${fileDirname}/../Cargo.toml"
-                ]
-            }
+                ],
+            },
+            "cwd": "${workspaceFolder}",
         }
     ]
 }
