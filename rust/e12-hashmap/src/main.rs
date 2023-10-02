@@ -17,6 +17,10 @@ fn main() {
         *count += 1;
     }
 
+    for i in text.split_whitespace() {
+        m.entry(i).and_modify(|count| *count += 1).or_insert(0);
+    }
+
     for i in &mut m {
         println!("{}, {}", i.0, i.1);
         let (k, v) = &i;
@@ -29,6 +33,4 @@ fn main() {
     for (k, v) in &mut m {
         println!("for..in: {} - {}", k, v);
     }
-
-
 }
