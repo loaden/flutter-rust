@@ -13,8 +13,8 @@ fn main() -> io::Result<()> {
         Err(_err) => panic!("what happened"),
     };
 
-    file.write_all(b"test").unwrap();
-    file.flush().unwrap();
+    file.write_all(b"test")?;
+    file.flush()?;
 
     let mut buf = String::new();
     match file.read_to_string(&mut buf) {
