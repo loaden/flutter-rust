@@ -1,11 +1,11 @@
 [package]
-name = "rust-flutter"
+name = "rust"
 version = "0.1.1"
 edition = "2021"
 
 [[bin]]
 path = "rust/main.rs"
-name = "rust-hi"
+name = "rust"
 
 [workspace]
 members = [
