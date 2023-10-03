@@ -31,9 +31,42 @@ git-fetch-with-cli = true
 
 ```
 
-### 1.1.4. 可能缺失的依赖
+## 3.2. Rust 平台相关
 
-  > glibc llvm-libs gcc pkg-config openssl
+### Unix 平台
+
+* 可能缺失的依赖
+  > pkg-config openssl
+
+### Linux 平台
+
+* 可能缺失的依赖
+  > gcc glibc llvm-libs
+
+### Android 平台
+
+* 编译目标
+
+  ```shell
+  rustup target add \
+    aarch64-linux-android \
+    armv7-linux-androideabi \
+    x86_64-linux-android \
+    i686-linux-android
+
+  ```
+
+### iOS 平台
+
+* 编译目标
+
+  ```shell
+  # 64 bit targets (real device & simulator):
+  rustup target add aarch64-apple-ios x86_64-apple-ios
+
+  # New simulator target for Xcode 12 and later
+  rustup target add aarch64-apple-ios-sim
+  ```
 
 ## 1.2. 工程配置
 
