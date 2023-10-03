@@ -56,7 +56,6 @@ cargo install create-tauri-app --locked
 cargo install tauri-cli
 ```
 
-
 ### 2.1.2. nodejs 转换淘宝源和官方源
 
 ```shell
@@ -139,11 +138,15 @@ yarn config set registry https://registry.npmjs.org/
 * 创建虚拟机图形加速选择：`Hardware - GLES 2.0`
 * 安卓虚拟机 “关于” 页面连续点击 “Build number” 开启 “开发者模式”
 
-### 3.2.3. Windows 平台
+### 3.2.3. iOS 平台
+
+* 启动模拟器：`open -a Simulator`
+
+### 3.2.4. Windows 平台
 
 * Android SDK Tools 安装 Google USB Driver
 
-### Linux 平台
+### 3.2.5. Linux 平台
 
 * 可能缺失的依赖
   > which zip pkg-config clang cmake ninja libgtk-3-dev
