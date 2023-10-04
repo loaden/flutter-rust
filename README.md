@@ -339,3 +339,5 @@ macos/Runner/AppDelegate.swift
 * iOS防止strip：设置Target Runner，打开Build Settings页面，搜索**Strip Style**，修改成**Non-Global Symbols**
 * iOS添加iconv链接依赖：设置Target Runner，打开Build Phases页面，为Link Binary with Libraries搜索**iconv**添加**libiconv.2.4.0.tbd**
 * macOS找不到native.dylib：打开`cargo xcode`生成的native项目，设置Target native.cdylib，打开Build Settings页面，搜索**Dynamic Library Install Name Base**，修改成 **@executable_path/../Frameworks/** 。之后修改根项目Runner，设置Target Runner，打开Build Phases页面，为**Bundle Framework**添加**cdylib**将库添加到包中
+* 分别设置根项目和native子项目，同步**PROJECT**的**Deployment Target**版本
+* 分别设置根项目Target Runner和native子项目Target native-cdylib，打开Build Settings页面，修改**Build Active Architecture Only**为**Yes**，因为在x64平台下，默认无法编译arm64目标代码，如果不设置，在Release模式下，会出现openssl找不到（因为aarch64版本的openssl不存在）
