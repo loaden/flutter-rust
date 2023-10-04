@@ -31,19 +31,19 @@ git-fetch-with-cli = true
 
 ```
 
-## 3.2. Rust 平台相关
+## 1.2. Rust 平台相关
 
-### Unix 平台
+### 1.2.1. Unix 平台
 
 * 可能缺失的依赖
   > pkg-config openssl
 
-### Linux 平台
+### 1.2.2. Linux 平台
 
 * 可能缺失的依赖
   > gcc glibc llvm-libs
 
-### Android 平台
+### 1.2.3. Android 平台
 
 * 编译目标
 
@@ -56,7 +56,7 @@ git-fetch-with-cli = true
 
   ```
 
-### iOS 平台
+### 1.2.4. iOS 平台
 
 * 编译目标
 
@@ -68,12 +68,50 @@ git-fetch-with-cli = true
   rustup target add aarch64-apple-ios-sim
   ```
 
-## 1.2. 工程配置
+## 1.3. 工程配置
 
 * 应用程序
   > cargo new rust-app
 * 动态库
   > cargo new --lib rust-lib
+
+### 1.3.1. OpenSSL for iOS
+
+* 一键编译包：`https://github.com/x2on/OpenSSL-for-iPhone`
+* 执行：`./build-libssl.sh --targets="ios-sim-cross-x86_64 ios-sim-cross-arm64 ios-cross-arm64"`
+* 添加环境变量，注意target，模拟器取决于host的CPU指令集
+
+```shell
+# 编译目标iOS模拟器，host是英特尔CPU的macOS：x64
+export OPENSSL_LIB_DIR=$HOME/.dev/projects/OpenSSL-for-iPhone/bin/iPhoneSimulator16.2-x86_64.sdk/lib
+export OPENSSL_INCLUDE_DIR=$HOME/.dev/projects/OpenSSL-for-iPhone/bin/iPhoneSimulator16.2-x86_64.sdk/include
+export PKG_CONFIG_PATH=$HOME/.dev/projects/OpenSSL-for-iPhone/bin/iPhoneSimulator16.2-x86_64.sdk/lib
+echo $PKG_CONFIG_PATH
+echo $OPENSSL_LIB_DIR
+echo $OPENSSL_INCLUDE_DIR
+read
+cargo build --manifest-path=native/Cargo.toml --target=x86_64-apple-ios
+
+# 编译目标iOS模拟器，host是M1的macOS：arm64
+export OPENSSL_LIB_DIR=$HOME/.dev/projects/OpenSSL-for-iPhone/bin/iPhoneSimulator16.2-arm64.sdk/lib
+export OPENSSL_INCLUDE_DIR=$HOME/.dev/projects/OpenSSL-for-iPhone/bin/iPhoneSimulator16.2-arm64.sdk/include
+export PKG_CONFIG_PATH=$HOME/.dev/projects/OpenSSL-for-iPhone/bin/iPhoneSimulator16.2-arm64.sdk/lib
+echo $PKG_CONFIG_PATH
+echo $OPENSSL_LIB_DIR
+echo $OPENSSL_INCLUDE_DIR
+read
+cargo build --manifest-path=native/Cargo.toml --target=aarch64-apple-ios-sim
+
+# 编译目标真机
+export OPENSSL_LIB_DIR=$HOME/.dev/projects/OpenSSL-for-iPhone/bin/iPhoneOS16.2-arm64.sdk/lib
+export OPENSSL_INCLUDE_DIR=$HOME/.dev/projects/OpenSSL-for-iPhone/bin/iPhoneOS16.2-arm64.sdk/include
+export PKG_CONFIG_PATH=$HOME/.dev/projects/OpenSSL-for-iPhone/bin/iPhoneOS16.2-arm64.sdk/lib
+echo $PKG_CONFIG_PATH
+echo $OPENSSL_LIB_DIR
+echo $OPENSSL_INCLUDE_DIR
+read
+cargo build --manifest-path=native/Cargo.toml --target=aarch64-apple-ios
+```
 
 </br>
 </br>
