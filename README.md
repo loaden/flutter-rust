@@ -320,3 +320,22 @@ yarn config set registry https://registry.npmjs.org/
     > flutter pub outdated
   * 更新Flutter依赖
     > flutter pub upgrade
+
+## FFI macOS & iOS 集成要点
+
+* 配置cargo项目：`crate-type = ["lib", "cdylib", "staticlib"]`
+* 生成xcode项目：`cargo xcode`
+* 拖放添加macOS和iOS子项目，至根项目Runner下
+* 设置根项目Runner的Target Runner，打开Build Phases页面，为**Target Dependencies**和**Link Binary with Libraries**添加依赖库，macOS选择**cdylib**库，iOS选择**staticlib**库
+* 生成C头文件，参考justfile和build.rs，分别在macOS和iOS项目中引用，详见
+
+```text
+ios/Runner/Runner-Bridging-Header.h
+ios/Runner/AppDelegate.swift
+macos/Runner/AppDelegate.swift
+```
+
+* macOS手动添加C头文件：设置Target Runner，打开Build Settings页面，搜索**Objective-C Bridging Header**，双击添加生成的C库头文件**Runner/bridge_api.h**
+* iOS防止strip：设置Target Runner，打开Build Settings页面，搜索**Strip Style**，修改成**Non-Global Symbols**
+* iOS添加iconv链接依赖：设置Target Runner，打开Build Phases页面，为Link Binary with Libraries搜索**iconv**添加**libiconv.2.4.0.tbd**
+* macOS找不到native.dylib：打开`cargo xcode`生成的native项目，设置Target native.cdylib，打开Build Settings页面，搜索**Dynamic Library Install Name Base**，修改成 **@executable_path/../Frameworks/** 。之后修改根项目Runner，设置Target Runner，打开Build Phases页面，为**Bundle Framework**添加**cdylib**将库添加到包中
