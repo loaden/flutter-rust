@@ -341,3 +341,48 @@ macos/Runner/AppDelegate.swift
 * macOS找不到native.dylib：打开`cargo xcode`生成的native项目，设置Target native.cdylib，打开Build Settings页面，搜索**Dynamic Library Install Name Base**，修改成 **@executable_path/../Frameworks/** 。之后修改根项目Runner，设置Target Runner，打开Build Phases页面，为**Bundle Framework**添加**cdylib**将库添加到包中
 * 分别设置根项目和native子项目，同步**PROJECT**的**Deployment Target**版本
 * 分别设置根项目Target Runner和native子项目Target native-cdylib，打开Build Settings页面，修改**Build Active Architecture Only**为**Yes**，因为在x64平台下，默认无法编译arm64目标代码，如果不设置，在Release模式下，会出现openssl找不到（因为aarch64版本的openssl不存在）
+
+## Android & Gradle 国内镜像源配置
+
+* 全局 ~/.gradle/init.gradle
+
+```gradle
+buildscript {
+    repositories {
+        println "aliyun repositories"
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://maven.aliyun.com/repository/central' }
+        maven { url 'https://maven.aliyun.com/repository/public' }
+        google()
+        mavenCentral()
+    }
+
+    allprojects {
+        println "aliyun allprojects ${project.name}"
+        repositories {
+            maven { url 'https://maven.aliyun.com/repository/google' }
+            maven { url 'https://maven.aliyun.com/repository/central' }
+            maven { url 'https://maven.aliyun.com/repository/public' }
+            google()
+            mavenCentral()
+        }
+    }
+}
+```
+
+* 项目配置优先级高于全局：build.gradle，详见：<https://developer.aliyun.com/mvn/guide>
+
+```gradle
+allprojects {
+  repositories {
+    maven {
+      url 'https://maven.aliyun.com/repository/public/'
+    }
+    maven {
+      url 'https://maven.aliyun.com/repository/central'
+    }
+    mavenLocal()
+    mavenCentral()
+  }
+}
+```
