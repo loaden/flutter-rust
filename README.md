@@ -346,7 +346,7 @@ macos/Runner/AppDelegate.swift
 
 * 全局 ~/.gradle/init.gradle
 
-```gradle
+```groovy
 buildscript {
     repositories {
         println "aliyun repositories"
@@ -372,7 +372,7 @@ buildscript {
 
 * 项目配置优先级高于全局：build.gradle，详见：<https://developer.aliyun.com/mvn/guide>
 
-```gradle
+```groovy
 allprojects {
   repositories {
     maven {
@@ -384,5 +384,37 @@ allprojects {
     mavenLocal()
     mavenCentral()
   }
+}
+```
+
+* 新版本配置文件在：`settings.gradle`
+* 官方推荐版本`settings.gradle.kts`
+
+```groovy
+pluginManagement {
+    repositories {
+        maven { setUrl("https://maven.aliyun.com/repository/central") }
+        maven { setUrl("https://maven.aliyun.com/repository/jcenter") }
+        maven { setUrl("https://maven.aliyun.com/repository/google") }
+        maven { setUrl("https://maven.aliyun.com/repository/gradle-plugin") }
+        maven { setUrl("https://maven.aliyun.com/repository/public") }
+        maven { setUrl("https://jitpack.io") }
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        maven { setUrl("https://maven.aliyun.com/repository/central") }
+        maven { setUrl("https://maven.aliyun.com/repository/jcenter") }
+        maven { setUrl("https://maven.aliyun.com/repository/google") }
+        maven { setUrl("https://maven.aliyun.com/repository/gradle-plugin") }
+        maven { setUrl("https://maven.aliyun.com/repository/public") }
+        maven { setUrl("https://jitpack.io") }
+        google()
+        mavenCentral()
+    }
 }
 ```
