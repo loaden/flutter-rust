@@ -209,6 +209,13 @@ yarn config set registry https://registry.npmjs.org/
 * 创建虚拟机图形加速选择：`Hardware - GLES 2.0`
 * 安卓虚拟机 “关于” 页面连续点击 “Build number” 开启 “开发者模式”
 * 卡在：Running Gradle task 'assembleDebug' 主要是GFW墙的问题
+* 可能需要JDK依赖：<https://www.oracle.com/java/technologies/downloads/>
+* 可以尝试清理与手动调用原生编译：
+
+  ```shell
+  .\android\gradlew.bat clean
+  .\android\gradlew.bat assembleDebug --debug
+  ```
 
 ### 3.2.3. iOS 平台
 
