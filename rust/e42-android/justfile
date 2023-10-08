@@ -1,0 +1,7 @@
+export ANDROID_NDK_HOME :=  env_var('HOME') + "/.dev/android/ndk"
+
+works:
+  cargo ndk -t x86_64 -o ./jniLibs build --release
+
+failed:
+  cargo build --target x86_64-linux-android

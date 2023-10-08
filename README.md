@@ -68,6 +68,18 @@ git-fetch-with-cli = true
   rustup target add aarch64-apple-ios-sim
   ```
 
+### 交叉编译
+
+* 查看工具链和编译目标
+
+```shell
+rustup toolchain list
+rustup target list
+```
+
+* 指定linker：交叉编译通常需要指定对应的编译器，否则 Rust 默认调用平台安装的 cc 编译器
+  > cargo build --target x86_64-linux-android
+
 ## 1.3. 工程配置
 
 * 应用程序
