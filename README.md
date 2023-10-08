@@ -208,6 +208,7 @@ yarn config set registry https://registry.npmjs.org/
 
 * 创建虚拟机图形加速选择：`Hardware - GLES 2.0`
 * 安卓虚拟机 “关于” 页面连续点击 “Build number” 开启 “开发者模式”
+* 卡在：Running Gradle task 'assembleDebug' 主要是GFW墙的问题
 
 ### 3.2.3. iOS 平台
 
@@ -375,12 +376,8 @@ buildscript {
 ```groovy
 allprojects {
   repositories {
-    maven {
-      url 'https://maven.aliyun.com/repository/public/'
-    }
-    maven {
-      url 'https://maven.aliyun.com/repository/central'
-    }
+    maven { url 'https://maven.aliyun.com/repository/public/' }
+    maven { url 'https://maven.aliyun.com/repository/central' }
     mavenLocal()
     mavenCentral()
   }
@@ -393,12 +390,12 @@ allprojects {
 ```groovy
 pluginManagement {
     repositories {
-        maven { setUrl("https://maven.aliyun.com/repository/central") }
-        maven { setUrl("https://maven.aliyun.com/repository/jcenter") }
-        maven { setUrl("https://maven.aliyun.com/repository/google") }
-        maven { setUrl("https://maven.aliyun.com/repository/gradle-plugin") }
-        maven { setUrl("https://maven.aliyun.com/repository/public") }
-        maven { setUrl("https://jitpack.io") }
+        maven { url = uri("https://maven.aliyun.com/repository/central") }
+        maven { url = uri("https://maven.aliyun.com/repository/jcenter") }
+        maven { url = uri("https://maven.aliyun.com/repository/google") }
+        maven { url = uri("https://maven.aliyun.com/repository/gradle-plugin") }
+        maven { url = uri("https://maven.aliyun.com/repository/public") }
+        maven { url = uri("https://jitpack.io") }
         google()
         mavenCentral()
         gradlePluginPortal()
@@ -407,12 +404,12 @@ pluginManagement {
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
-        maven { setUrl("https://maven.aliyun.com/repository/central") }
-        maven { setUrl("https://maven.aliyun.com/repository/jcenter") }
-        maven { setUrl("https://maven.aliyun.com/repository/google") }
-        maven { setUrl("https://maven.aliyun.com/repository/gradle-plugin") }
-        maven { setUrl("https://maven.aliyun.com/repository/public") }
-        maven { setUrl("https://jitpack.io") }
+        maven { url = uri("https://maven.aliyun.com/repository/central") }
+        maven { url = uri("https://maven.aliyun.com/repository/jcenter") }
+        maven { url = uri("https://maven.aliyun.com/repository/google") }
+        maven { url = uri("https://maven.aliyun.com/repository/gradle-plugin") }
+        maven { url = uri("https://maven.aliyun.com/repository/public") }
+        maven { url = uri("https://jitpack.io") }
         google()
         mavenCentral()
     }
