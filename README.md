@@ -208,14 +208,8 @@ yarn config set registry https://registry.npmjs.org/
 
 * 创建虚拟机图形加速选择：`Hardware - GLES 2.0`
 * 安卓虚拟机 “关于” 页面连续点击 “Build number” 开启 “开发者模式”
-* 卡在：Running Gradle task 'assembleDebug' 主要是GFW墙的问题
-* 可能需要JDK依赖：<https://www.oracle.com/java/technologies/downloads/>
-* 可以尝试清理与手动调用原生编译：
-
-  ```shell
-  .\android\gradlew.bat clean
-  .\android\gradlew.bat assembleDebug --debug
-  ```
+* 卡在：Running Gradle task 'assembleDebug' 主要是GFW墙导致gradle下载缓慢，从国内镜像源下载<https://mirrors.cloud.tencent.com/gradle/>，之后拷贝到.gradle/wrapper/dists相应目录
+* 注意用`flutter run -v`看缓慢原因
 
 ### 3.2.3. iOS 平台
 
@@ -357,7 +351,6 @@ macos/Runner/AppDelegate.swift
 ```groovy
 buildscript {
     repositories {
-        println "aliyun repositories"
         maven { url 'https://maven.aliyun.com/repository/google' }
         maven { url 'https://maven.aliyun.com/repository/central' }
         maven { url 'https://maven.aliyun.com/repository/public' }
@@ -366,7 +359,6 @@ buildscript {
     }
 
     allprojects {
-        println "aliyun allprojects ${project.name}"
         repositories {
             maven { url 'https://maven.aliyun.com/repository/google' }
             maven { url 'https://maven.aliyun.com/repository/central' }
