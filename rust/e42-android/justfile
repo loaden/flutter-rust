@@ -1,6 +1,10 @@
-export ANDROID_NDK_HOME :=  env_var('HOME') + "/.dev/android/ndk"
+set windows-shell := ["powershell.exe", "-NoLogo", "-Command"]
 
-works:
+run:
+  cargo ndk -t x86_64 -o ./jniLibs build --release
+
+ndk ANDROID_NDK_HOME="env_var('HOME')/.dev/android/ndk":
+  @echo ${ANDROID_NDK_HOME}
   cargo ndk -t x86_64 -o ./jniLibs build --release
 
 failed:
