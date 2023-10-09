@@ -56,6 +56,13 @@ git-fetch-with-cli = true
 
   ```
 
+* 配置NDK路径
+  > echo "ANDROID_NDK=.." >> ~/.gradle/gradle.properties
+
+* 安装cargo-ndk
+  > cargo install cargo-ndk
+* 可能需要配置NDK环境变量：`ANDROID_NDK_HOME`
+
 ### 1.2.4. iOS 平台
 
 * 编译目标
