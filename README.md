@@ -46,17 +46,9 @@ git-fetch-with-cli = true
 ### 1.2.3. Android 平台
 
 * 编译目标
+  > rustup target add aarch64-linux-android armv7-linux-androideabi x86_64-linux-android
 
-  ```shell
-  rustup target add \
-    aarch64-linux-android \
-    armv7-linux-androideabi \
-    x86_64-linux-android \
-    i686-linux-android
-
-  ```
-
-* 配置NDK路径
+* 可能需要配置NDK路径
   > echo "ANDROID_NDK=.." >> ~/.gradle/gradle.properties
 
 * 安装cargo-ndk
@@ -75,7 +67,13 @@ git-fetch-with-cli = true
   rustup target add aarch64-apple-ios-sim
   ```
 
-### 交叉编译
+#### 1.2.4.1. OpenSSL for iOS
+
+* 一键编译包：`https://github.com/x2on/OpenSSL-for-iPhone`
+* 执行：`./build-libssl.sh --targets="ios-sim-cross-x86_64 ios-sim-cross-arm64 ios-cross-arm64"`
+* 添加环境变量，注意target，模拟器取决于host的CPU指令集
+
+#### 1.2.4.2. 交叉编译
 
 * 查看工具链和编译目标
 
@@ -85,20 +83,9 @@ rustup target list
 ```
 
 * 指定linker：交叉编译通常需要指定对应的编译器，否则 Rust 默认调用平台安装的 cc 编译器
-  > cargo build --target x86_64-linux-android
+  > cargo build --target x86_64-apple-ios
 
-## 1.3. 工程配置
-
-* 应用程序
-  > cargo new rust-app
-* 动态库
-  > cargo new --lib rust-lib
-
-### 1.3.1. OpenSSL for iOS
-
-* 一键编译包：`https://github.com/x2on/OpenSSL-for-iPhone`
-* 执行：`./build-libssl.sh --targets="ios-sim-cross-x86_64 ios-sim-cross-arm64 ios-cross-arm64"`
-* 添加环境变量，注意target，模拟器取决于host的CPU指令集
+#### 1.2.4.3. iOS 交叉编译openssl
 
 ```shell
 # 编译目标iOS模拟器，host是英特尔CPU的macOS：x64
@@ -132,53 +119,21 @@ read
 cargo build --manifest-path=native/Cargo.toml --target=aarch64-apple-ios
 ```
 
+## 1.3. 工程配置
+
+* 应用程序
+  > cargo new rust-app
+* 动态库
+  > cargo new --lib rust-lib
+
 </br>
 </br>
 
-# 2. Tauri 学习笔记
+# 2. Flutter 学习笔记
 
 ## 2.1. 环境配置
 
-### 2.1.1. 安装配置 Tauri
-
-```shell
-cargo install create-tauri-app --locked
-cargo install tauri-cli
-```
-
-### 2.1.2. nodejs 转换淘宝源和官方源
-
-```shell
-npm config set registry https://registry.npm.taobao.org/
-npm config set registry https://registry.npmjs.org/
-
-yarn config set registry https://registry.npm.taobao.org/
-yarn config set registry https://registry.npmjs.org/
-```
-
-### 2.1.3. 可能缺失的依赖
-
-> webkit2gtk
-
-## 2.2. 工程配置
-
-* 创建工程
-  > `cargo create-tauri-app`
-
-* 运行工程
-  > `cargo tauri dev`
-
-* 发布工程
-  > `cargo tauri build`
-
-</br>
-</br>
-
-# 3. Flutter 学习笔记
-
-## 3.1. 环境配置
-
-### 3.1.1. 安装配置 Flutter
+### 2.1.1. 安装配置 Flutter
 
 * 地址：<https://flutter.cn/docs/get-started/install>
 * 解压：$HOME/Dev/Flutter 或者 D:\Dev\Flutter
@@ -189,12 +144,12 @@ yarn config set registry https://registry.npmjs.org/
 * 检查位置：`$ where flutter dart`
 * 安卓开发：<https://developer.android.google.cn/studio>
 
-### 3.1.2. VSCode 插件
+### 2.1.2. VSCode 插件
 
 * 插件安装
   > Flutter 、Dart
 
-### 3.1.3. 国内网络镜像
+### 2.1.3. 国内网络镜像
 
 * 国内镜像地址，Fuck GFW：<https://flutter.cn/community/china>
 
@@ -211,9 +166,9 @@ yarn config set registry https://registry.npmjs.org/
   git config --global --get remote.origin.proxy
   ```
 
-## 3.2. Flutter 平台相关
+## 2.2. Flutter 平台相关
 
-### 3.2.1. macOS 平台
+### 2.2.1. macOS 平台
 
 * 需要 .zprofile 导出环境变量，否则 brew 更新困难
   > export HOMEBREW_NO_INSTALL_FROM_API=1
@@ -223,7 +178,7 @@ yarn config set registry https://registry.npmjs.org/
 * macOS 需要安装 clang
   > xcode-select --install
 
-### 3.2.2. Android 平台
+### 2.2.2. Android 平台
 
 * 创建虚拟机图形加速选择：`Hardware - GLES 2.0`
 * 需要创建环境变量：`export ANDROID_HOME="$HOME/.dev/android"`
@@ -231,24 +186,24 @@ yarn config set registry https://registry.npmjs.org/
 * 卡在：Running Gradle task 'assembleDebug' 主要是GFW墙导致gradle下载缓慢，从国内镜像源下载<https://mirrors.cloud.tencent.com/gradle/>，之后拷贝到.gradle/wrapper/dists相应目录
 * 注意用`flutter run -v`看缓慢原因
 
-### 3.2.3. iOS 平台
+### 2.2.3. iOS 平台
 
 * 启动模拟器：`open -a Simulator`
 
-### 3.2.4. Windows 平台
+### 2.2.4. Windows 平台
 
 * Android SDK Tools 安装 Google USB Driver
 
-### 3.2.5. Linux 平台
+### 2.2.5. Linux 平台
 
 * 可能缺失的依赖
   > which zip pkg-config clang cmake ninja libgtk-3-dev
 * 可能需要添加软链接
   > sudo ln -s /usr/lib/llvm-14/lib/libclang.so.1 /usr/lib/llvm-14/lib/libclang.so
 
-## 3.3. Rust FFI 连接
+## 2.3. Rust FFI 连接
 
-### 3.3.1. 安装配置
+### 2.3.1. 安装配置
 
 * 官网：<https://github.com/fzyzcjy/flutter_rust_bridge>
 * 文档：<https://cjycode.com/flutter_rust_bridge/index.html>
@@ -259,7 +214,7 @@ yarn config set registry https://registry.npmjs.org/
   > dart pub global activate ffigen
   > cargo install flutter_rust_bridge_codegen
 
-### 3.3.2. 用法
+### 2.3.2. 用法
 
 * 转换成 Dart 代码
   > flutter_rust_bridge_codegen --rust-input core/src/api.rs --dart-output ui/lib/api_generated.dart
@@ -292,7 +247,7 @@ yarn config set registry https://registry.npmjs.org/
   }
   ```
 
-## 3.4. 工程配置
+## 2.4. 工程配置
 
 * 创建应用程序
   > flutter create flutter_app
@@ -304,7 +259,7 @@ yarn config set registry https://registry.npmjs.org/
   > flutter build windows
   > flutter build apk
 
-## 3.5. Rust FFI 实战
+## 2.5. Rust FFI 实战
 
 * 创建Flutter应用
   > flutter create gitgui
@@ -343,7 +298,7 @@ yarn config set registry https://registry.npmjs.org/
   * 更新Flutter依赖
     > flutter pub upgrade
 
-## FFI macOS & iOS 集成要点
+## 2.6. FFI macOS & iOS 集成要点
 
 * 配置cargo项目：`crate-type = ["lib", "cdylib", "staticlib"]`
 * 生成xcode项目：`cargo xcode`
@@ -364,7 +319,7 @@ macos/Runner/AppDelegate.swift
 * 分别设置根项目和native子项目，同步**PROJECT**的**Deployment Target**版本
 * 分别设置根项目Target Runner和native子项目Target native-cdylib，打开Build Settings页面，修改**Build Active Architecture Only**为**Yes**，因为在x64平台下，默认无法编译arm64目标代码，如果不设置，在Release模式下，会出现openssl找不到（因为aarch64版本的openssl不存在）
 
-## Android & Gradle 国内镜像源配置
+## 2.7. Android & Gradle 国内镜像源配置
 
 * 全局 ~/.gradle/init.gradle
 
@@ -434,3 +389,42 @@ dependencyResolutionManagement {
     }
 }
 ```
+
+# 3. Tauri 学习笔记
+
+## 3.1. 环境配置
+
+### 3.1.1. 安装配置 Tauri
+
+```shell
+cargo install create-tauri-app --locked
+cargo install tauri-cli
+```
+
+### 3.1.2. nodejs 转换淘宝源和官方源
+
+```shell
+npm config set registry https://registry.npm.taobao.org/
+npm config set registry https://registry.npmjs.org/
+
+yarn config set registry https://registry.npm.taobao.org/
+yarn config set registry https://registry.npmjs.org/
+```
+
+### 3.1.3. 可能缺失的依赖
+
+> webkit2gtk
+
+## 3.2. 工程配置
+
+* 创建工程
+  > `cargo create-tauri-app`
+
+* 运行工程
+  > `cargo tauri dev`
+
+* 发布工程
+  > `cargo tauri build`
+
+</br>
+</br>
