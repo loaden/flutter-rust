@@ -181,7 +181,7 @@ cargo build --manifest-path=native/Cargo.toml --target=aarch64-apple-ios
 ### 2.2.2. Android 平台
 
 * 创建虚拟机图形加速选择：`Hardware - GLES 2.0`
-* 需要创建环境变量：`export ANDROID_HOME="$HOME/.dev/android"`
+* 可能需要创建环境变量：`export ANDROID_HOME="$HOME/.dev/android"`
 * 安卓虚拟机 “关于” 页面连续点击 “Build number” 开启 “开发者模式”
 * 卡在：Running Gradle task 'assembleDebug' 主要是GFW墙导致gradle下载缓慢，从国内镜像源下载<https://mirrors.cloud.tencent.com/gradle/>，之后拷贝到.gradle/wrapper/dists相应目录
 * 注意用`flutter run -v`看缓慢原因
@@ -192,7 +192,7 @@ cargo build --manifest-path=native/Cargo.toml --target=aarch64-apple-ios
 
 ### 2.2.4. Windows 平台
 
-* Android SDK Tools 安装 Google USB Driver
+* Android SDK Tools 真机调试需要安装 Google USB Driver
 
 ### 2.2.5. Linux 平台
 
