@@ -647,6 +647,9 @@ version = "0.1.0"
 [[package]]
 name = "e43-global"
 version = "0.1.0"
+dependencies = [
+ "lazy_static",
+]
 
 [[package]]
 name = "env_logger"
