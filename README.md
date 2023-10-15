@@ -36,7 +36,7 @@ git-fetch-with-cli = true
 ### 1.2.1. Unix 平台
 
 * 可能缺失的依赖
-  > pkg-config openssl
+  > pkg-config libssl-dev openssl
 
 ### 1.2.2. Linux 平台
 
@@ -48,12 +48,9 @@ git-fetch-with-cli = true
 * 编译目标
   > rustup target add aarch64-linux-android armv7-linux-androideabi x86_64-linux-android
 
-* 可能需要配置NDK路径
-  > echo "ANDROID_NDK=.." >> ~/.gradle/gradle.properties
-
 * 安装cargo-ndk
   > cargo install cargo-ndk
-* 可能需要配置NDK环境变量：`ANDROID_NDK_HOME`
+* 可能需要配置NDK环境变量：`ANDROID_HOME` or `ANDROID_NDK_HOME`
 
 ### 1.2.4. iOS 平台
 
