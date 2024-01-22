@@ -41,6 +41,7 @@ git-fetch-with-cli = true
 ```shell
 git config --global http.https://github.com.proxy 127.0.0.1:26501
 git config --global http.https://github.com.sslverify false
+git config --global --unset remote.origin.proxy
 ```
 
 * 核实配置，可以
