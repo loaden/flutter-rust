@@ -39,15 +39,21 @@ git-fetch-with-cli = true
 * 支持https克隆源码库
 
 ```shell
-git config --global http.proxy 127.0.0.1:26501
-git config --global http.sslverify false
+git config --global http.https://github.com.proxy 127.0.0.1:26501
+git config --global http.https://github.com.sslverify false
+```
+
+* 核实配置，可以
+
+```shell
+git config --list --global
 ```
 
 * 如需重置，可以
 
 ```shell
-git config --global --unset http.proxy
-git config --global --unset http.sslverify
+git config --global --unset http.https://github.com.proxy
+git config --global --unset http.https://github.com.sslverify
 ```
 
 * ssh改走https协议，走443端口，修改 .ssh/config
