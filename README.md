@@ -31,6 +31,34 @@ git-fetch-with-cli = true
 
 ```
 
+### 1.1.4. Watt Toolkit 访问 github
+
+* 下载地址：<https://github.com/BeyondDimension/SteamTools>
+* Windows查看代理端口号：Windows设置-网络-代理，可以查看到端口号26501
+* 开启pac代理模式，并一键加速
+* 支持https克隆源码库
+
+```shell
+git config --global http.proxy 127.0.0.1:26501
+git config --global http.sslverify false
+```
+
+* 如需重置，可以
+
+```shell
+git config --global --unset http.proxy
+git config --global --unset http.sslverify
+```
+
+* ssh改走https协议，走443端口，修改 .ssh/config
+
+```shell
+Host github.com
+    Hostname ssh.github.com
+    Port 443
+    User git
+```
+
 ## 1.2. Rust 平台相关
 
 ### 1.2.1. Unix 平台
