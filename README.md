@@ -8,9 +8,9 @@
 ### 1.1.1. 安装配置 Rust
 
 * 地址：<https://www.rust-lang.org/zh-CN/tools/install>
-* 升级：`$ rustup update stable`
+* 升级：`$ rustup update`
 * 查看：`$ rustup show`
-* 格式化：`$ rustup component add rustfmt`
+* 格式化工具：`$ rustup component add rustfmt`
 
 ### 1.1.2. VSCode 插件
 
