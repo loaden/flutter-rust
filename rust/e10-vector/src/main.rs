@@ -29,6 +29,11 @@ fn main() {
             println!("else if let Length: {}", t);
         }
     }
+
+    let mut v = vec![1, 2, 3];
+    let p = &v[0];
+    v.push(4);
+    println!("{}", p);
 }
 
 enum Msg {
