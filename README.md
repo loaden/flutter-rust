@@ -329,13 +329,22 @@ dependencyResolutionManagement {
 * 官网：<https://github.com/fzyzcjy/flutter_rust_bridge>
 * 文档：<https://cjycode.com/flutter_rust_bridge/index.html>
 
-## 安装与配置
+## 3.2. 安装与配置
 
-## 3.2. 老版本v1 配置存档 (v1.82.6)
+* 安装
+  > cargo install flutter_rust_bridge_codegen@^2.0.0-dev.0
 
-### 3.2.1. Rust FFI 连接
+* 创建新项目
+  > flutter_rust_bridge_codegen create frb_app
 
-#### 3.2.1.1. 安装配置
+* 集成旧项目
+  > flutter_rust_bridge_codegen integrate
+
+## 3.3. 老版本v1 配置存档 (v1.82.6)
+
+### 3.3.1. Rust FFI 连接
+
+#### 3.3.1.1. 安装配置
 
 * 工具和依赖
 
@@ -343,7 +352,7 @@ dependencyResolutionManagement {
   > cargo install flutter_rust_bridge_codegen
   > dart pub global activate ffigen
 
-#### 3.2.1.2. 用法
+#### 3.3.1.2. 命令行示例
 
 * 转换成 Dart 代码
   > flutter_rust_bridge_codegen --rust-input core/src/api.rs --dart-output ui/lib/api_generated.dart
@@ -388,7 +397,7 @@ dependencyResolutionManagement {
   }
   ```
 
-### 3.2.2. Rust FFI 实战
+### 3.3.2. Rust FFI 实战
 
 * 创建Flutter应用
   > flutter create gitgui
@@ -436,7 +445,7 @@ dependencyResolutionManagement {
   * 更新Flutter依赖
     > flutter pub upgrade
 
-### 3.2.3. FFI macOS & iOS 集成要点
+### 3.3.3. FFI macOS & iOS 集成要点
 
 * 配置cargo项目：`crate-type = ["lib", "cdylib", "staticlib"]`
 * 生成xcode项目：`cargo xcode`
