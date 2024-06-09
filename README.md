@@ -19,7 +19,7 @@
 
 ### 1.1.3. cargo 启用中科大源
 
-* 编辑 .cargo/config.toml
+* 编辑 `~/.cargo/config.toml`
 
 ```toml
 [source.crates-io]
@@ -29,6 +29,16 @@ registry = "git://mirrors.ustc.edu.cn/crates.io-index/"
 [net]
 git-fetch-with-cli = true
 
+```
+
+### 1.1.3. 清理`~/.cargo`缓存
+
+  > `cargo install cargo-cache`
+
+```shell
+cargo cache -a
+cargo-cache --remove-dir all
+cargo-cache -r all
 ```
 
 ### 1.1.4. Watt Toolkit 访问 github
