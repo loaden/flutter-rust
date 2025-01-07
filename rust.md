@@ -51,7 +51,7 @@ cargo-cache -r all
 ### 1.2.1. Unix 平台
 
 * 可能缺失的依赖
-  > pkg-config libssl-dev openssl
+  > pkg-config libssl-dev openssl cmake
 
 ### 1.2.2. Linux 平台
 
