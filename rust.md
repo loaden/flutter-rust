@@ -52,6 +52,11 @@ cargo-cache -r all
 
 * 可能缺失的依赖
   > pkg-config libssl-dev openssl cmake
+* macOS需要先安装brew
+
+```shell
+/bin/zsh -c "$(curl -fsSL https://gitee.com/cunkai/HomebrewCN/raw/master/Homebrew.sh)"
+```
 
 ### 1.2.2. Linux 平台
 

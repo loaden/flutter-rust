@@ -42,8 +42,6 @@
 
 ### 1.2.1. macOS 平台
 
-* 需要 .profile 或者 .zprofile 导出环境变量，否则 brew 更新困难
-  > export HOMEBREW_NO_INSTALL_FROM_API=1
 * macOS 与原生 iOS 代码交互
   > sudo gem install cocoapods
 * macOS 需要通过AppStore安装 Xcode
