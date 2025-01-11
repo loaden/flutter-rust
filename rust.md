@@ -48,20 +48,21 @@ cargo-cache -r all
 
 ## 1.2. Rust 平台依赖库
 
-### 1.2.1. Unix 平台
+### 1.2.1. macOS 平台
 
-* 可能缺失的依赖
-  > pkg-config libssl-dev openssl cmake
-* macOS需要先安装brew
+* 需要先安装brew
 
 ```shell
 /bin/zsh -c "$(curl -fsSL https://gitee.com/cunkai/HomebrewCN/raw/master/Homebrew.sh)"
 ```
 
+* 可能缺失的依赖
+  > pkg-config cmake ninja openssl
+
 ### 1.2.2. Linux 平台
 
 * 可能缺失的依赖
-  > gcc glibc llvm-libs
+  > gcc glibc llvm-libs libssl-dev
 
 ### 1.2.3. Android 平台
 
