@@ -11,12 +11,6 @@
 * 升级：`$ rustup update`
 * 查看：`$ rustup show`
 * 可能需要额外安装格式化工具：`$ rustup component add rustfmt`
-* 安装Xcode命令行工具（含git）
-
-```shell
-xcode-select --install #安装
-xcode-select -p #验证
-```
 
 ### 1.1.2. VSCode 插件
 
@@ -50,7 +44,14 @@ cargo-cache -r all
 
 ### 1.2.1. macOS 平台
 
-* 需要先安装brew
+* 安装Xcode命令行工具（含git）
+
+```shell
+xcode-select --install #安装
+xcode-select -p #验证
+```
+
+* 安装brew
 
 ```shell
 /bin/zsh -c "$(curl -fsSL https://gitee.com/cunkai/HomebrewCN/raw/master/Homebrew.sh)"
