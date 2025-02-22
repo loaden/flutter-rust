@@ -11,6 +11,7 @@
 * 升级：`$ rustup update`
 * 查看：`$ rustup show`
 * 可能需要额外安装格式化工具：`$ rustup component add rustfmt`
+* 卸载：`$ rustup self uninstall`
 
 ### 1.1.2. VSCode 插件
 
